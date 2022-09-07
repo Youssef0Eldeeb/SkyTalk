@@ -19,9 +19,13 @@
 		A14803C228C8C8E100FF9A76 /* UIViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14803C128C8C8E100FF9A76 /* UIViewControllerExtention.swift */; };
 		A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */; };
 		A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14803C628C8CFA400FF9A76 /* SignUp.storyboard */; };
+		A14803C928C9372C00FF9A76 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */; };
+		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21F14B2F2916ABF614F666E0 /* Pods-SkyTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.release.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.release.xcconfig"; sourceTree = "<group>"; };
+		5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkyTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A148039828C8AF2200FF9A76 /* SkyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A148039B28C8AF2200FF9A76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A148039D28C8AF2200FF9A76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 		A14803C128C8C8E100FF9A76 /* UIViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtention.swift; sourceTree = "<group>"; };
 		A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A14803C628C8CFA400FF9A76 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info-2.plist"; path = "../../../../../../../Downloads/GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +49,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A211B4AE0B9D38E58028E6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8BAED7D90E24F6B80D94716E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */,
+				21F14B2F2916ABF614F666E0 /* Pods-SkyTalk.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A148038F28C8AF2200FF9A76 = {
 			isa = PBXGroup;
 			children = (
 				A148039A28C8AF2200FF9A76 /* SkyTalk */,
 				A148039928C8AF2200FF9A76 /* Products */,
+				8BAED7D90E24F6B80D94716E /* Pods */,
+				8A211B4AE0B9D38E58028E6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +102,7 @@
 				A14803A428C8AF2B00FF9A76 /* Assets.xcassets */,
 				A14803A628C8AF2B00FF9A76 /* LaunchScreen.storyboard */,
 				A14803A928C8AF2B00FF9A76 /* Info.plist */,
+				A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */,
 			);
 			path = SkyTalk;
 			sourceTree = "<group>";
@@ -132,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A14803AC28C8AF2B00FF9A76 /* Build configuration list for PBXNativeTarget "SkyTalk" */;
 			buildPhases = (
+				E34FBCE17F5BEDDFFAB171DB /* [CP] Check Pods Manifest.lock */,
 				A148039428C8AF2200FF9A76 /* Sources */,
 				A148039528C8AF2200FF9A76 /* Frameworks */,
 				A148039628C8AF2200FF9A76 /* Resources */,
+				8509BF7A9E17CC586B9F1D9F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,6 +215,7 @@
 			files = (
 				A14803BC28C8BC9200FF9A76 /* Login.storyboard in Resources */,
 				A14803A828C8AF2B00FF9A76 /* LaunchScreen.storyboard in Resources */,
+				A14803C928C9372C00FF9A76 /* GoogleService-Info-2.plist in Resources */,
 				A14803A528C8AF2B00FF9A76 /* Assets.xcassets in Resources */,
 				A14803BA28C8BB7300FF9A76 /* Initial.storyboard in Resources */,
 				A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */,
@@ -192,6 +223,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8509BF7A9E17CC586B9F1D9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SkyTalk/Pods-SkyTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SkyTalk/Pods-SkyTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SkyTalk/Pods-SkyTalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E34FBCE17F5BEDDFFAB171DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SkyTalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A148039428C8AF2200FF9A76 /* Sources */ = {
@@ -338,6 +411,7 @@
 		};
 		A14803AD28C8AF2B00FF9A76 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -366,6 +440,7 @@
 		};
 		A14803AE28C8AF2B00FF9A76 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21F14B2F2916ABF614F666E0 /* Pods-SkyTalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
