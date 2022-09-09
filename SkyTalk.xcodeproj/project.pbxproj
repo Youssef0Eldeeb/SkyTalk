@@ -19,7 +19,9 @@
 		A14803C228C8C8E100FF9A76 /* UIViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14803C128C8C8E100FF9A76 /* UIViewControllerExtention.swift */; };
 		A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */; };
 		A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14803C628C8CFA400FF9A76 /* SignUp.storyboard */; };
-		A14803C928C9372C00FF9A76 /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */; };
+		A14803C928C9372C00FF9A76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */; };
+		A190E04928CA5D050023D115 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A190E04828CA5D050023D115 /* LoginPresenter.swift */; };
+		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +42,9 @@
 		A14803C128C8C8E100FF9A76 /* UIViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtention.swift; sourceTree = "<group>"; };
 		A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A14803C628C8CFA400FF9A76 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
-		A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info-2.plist"; path = "../../../../../../../Downloads/GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A190E04828CA5D050023D115 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,7 +74,6 @@
 				A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */,
 				21F14B2F2916ABF614F666E0 /* Pods-SkyTalk.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -95,14 +98,16 @@
 		A148039A28C8AF2200FF9A76 /* SkyTalk */ = {
 			isa = PBXGroup;
 			children = (
+				A190E03728CA36CB0023D115 /* Services */,
+				A190E03828CA36DA0023D115 /* Models */,
+				A190E03928CA36E20023D115 /* Scences */,
 				A14803BE28C8C7B600FF9A76 /* Extentions */,
-				A14803BD28C8C70500FF9A76 /* Presenter */,
 				A148039B28C8AF2200FF9A76 /* AppDelegate.swift */,
 				A148039D28C8AF2200FF9A76 /* SceneDelegate.swift */,
 				A14803A428C8AF2B00FF9A76 /* Assets.xcassets */,
 				A14803A628C8AF2B00FF9A76 /* LaunchScreen.storyboard */,
 				A14803A928C8AF2B00FF9A76 /* Info.plist */,
-				A14803C828C9372C00FF9A76 /* GoogleService-Info-2.plist */,
+				A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */,
 			);
 			path = SkyTalk;
 			sourceTree = "<group>";
@@ -110,8 +115,8 @@
 		A14803AF28C8B04900FF9A76 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A14803B228C8B0B200FF9A76 /* LoginViewController.swift */,
-				A14803BB28C8BC9200FF9A76 /* Login.storyboard */,
+				A190E04028CA37A80023D115 /* Presenter */,
+				A190E04128CA37B00023D115 /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -119,8 +124,8 @@
 		A14803B428C8BABA00FF9A76 /* Initial */ = {
 			isa = PBXGroup;
 			children = (
-				A14803B528C8BAD100FF9A76 /* InitialViewController.swift */,
-				A14803B928C8BB7300FF9A76 /* Initial.storyboard */,
+				A190E04228CA37D50023D115 /* Presenter */,
+				A190E04328CA37DC0023D115 /* View */,
 			);
 			path = Initial;
 			sourceTree = "<group>";
@@ -128,9 +133,6 @@
 		A14803BD28C8C70500FF9A76 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A14803C328C8CF6700FF9A76 /* SignUp */,
-				A14803B428C8BABA00FF9A76 /* Initial */,
-				A14803AF28C8B04900FF9A76 /* Login */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -147,10 +149,93 @@
 		A14803C328C8CF6700FF9A76 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				A14803BD28C8C70500FF9A76 /* Presenter */,
+				A190E03D28CA375C0023D115 /* View */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		A190E03728CA36CB0023D115 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A190E03A28CA37160023D115 /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A190E03828CA36DA0023D115 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A190E03928CA36E20023D115 /* Scences */ = {
+			isa = PBXGroup;
+			children = (
+				A190E04A28CA6AA70023D115 /* Home */,
+				A14803B428C8BABA00FF9A76 /* Initial */,
+				A14803C328C8CF6700FF9A76 /* SignUp */,
+				A14803AF28C8B04900FF9A76 /* Login */,
+			);
+			path = Scences;
+			sourceTree = "<group>";
+		};
+		A190E03A28CA37160023D115 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A190E03D28CA375C0023D115 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */,
 				A14803C628C8CFA400FF9A76 /* SignUp.storyboard */,
 			);
-			path = SignUp;
+			path = View;
+			sourceTree = "<group>";
+		};
+		A190E04028CA37A80023D115 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A190E04828CA5D050023D115 /* LoginPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A190E04128CA37B00023D115 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A14803B228C8B0B200FF9A76 /* LoginViewController.swift */,
+				A14803BB28C8BC9200FF9A76 /* Login.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A190E04228CA37D50023D115 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A190E04328CA37DC0023D115 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A14803B528C8BAD100FF9A76 /* InitialViewController.swift */,
+				A14803B928C8BB7300FF9A76 /* Initial.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A190E04A28CA6AA70023D115 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A190E04B28CA6ADC0023D115 /* Home.storyboard */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,9 +298,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */,
 				A14803BC28C8BC9200FF9A76 /* Login.storyboard in Resources */,
 				A14803A828C8AF2B00FF9A76 /* LaunchScreen.storyboard in Resources */,
-				A14803C928C9372C00FF9A76 /* GoogleService-Info-2.plist in Resources */,
+				A14803C928C9372C00FF9A76 /* GoogleService-Info.plist in Resources */,
 				A14803A528C8AF2B00FF9A76 /* Assets.xcassets in Resources */,
 				A14803BA28C8BB7300FF9A76 /* Initial.storyboard in Resources */,
 				A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */,
@@ -274,6 +360,7 @@
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
+				A190E04928CA5D050023D115 /* LoginPresenter.swift in Sources */,
 				A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */,
 				A14803B628C8BAD100FF9A76 /* InitialViewController.swift in Sources */,
 				A14803C028C8C7D100FF9A76 /* UiViewExtention.swift in Sources */,

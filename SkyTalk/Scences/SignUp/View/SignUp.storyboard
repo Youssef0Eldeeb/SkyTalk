@@ -77,9 +77,9 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N23-3Y-9DD">
-                                <rect key="frame" x="157" y="74" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.27499347460000001" green="0.85607539909999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="N23-3Y-9DD">
+                                <rect key="frame" x="157" y="74.5" width="100" height="99"/>
+                                <color key="tintColor" red="0.2241546744" green="0.38501401810000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="lt9-gU-Tdw"/>
                                     <constraint firstAttribute="width" constant="100" id="v3Y-gV-3JF"/>
@@ -107,6 +107,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signUpBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="hST-RV-LBT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -122,6 +125,13 @@
                             <constraint firstItem="7ph-Ky-f2I" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="xHg-WN-3IF"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="A6j-Wd-qvU" id="NW5-p9-S5r"/>
+                        <outlet property="firstNameTextField" destination="LcE-Va-dj4" id="eJf-91-eqM"/>
+                        <outlet property="lastNameTextField" destination="e95-Ck-VlK" id="498-G5-yDr"/>
+                        <outlet property="passTextField" destination="Wsl-Md-yFg" id="HVv-8s-X5e"/>
+                        <outlet property="profileImageView" destination="N23-3Y-9DD" id="DEr-xN-rjZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,6 +139,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
