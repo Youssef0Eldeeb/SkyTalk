@@ -26,14 +26,14 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpBtn(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passTextField.text ?? ""
-        
-        checkSignupAuthentication(email: email, password: password)
+        let userAuth = UserAuth(email: email, password: password)
+        checkSignupAuthentication(userAuth)
     }
     
     
     
-    private func checkSignupAuthentication(email: String, password: String){
-        FirebaseAuthentication().signUpAuth(email: email, password: password) { error in
+    private func checkSignupAuthentication(_ userAuth: UserAuth){
+        FirebaseAuthentication().signUpAuth(userAuth: userAuth) { error in
             if let error = error {
                 UIAlertController.showAlert(msg: error.localizedDescription, form: self)
             }

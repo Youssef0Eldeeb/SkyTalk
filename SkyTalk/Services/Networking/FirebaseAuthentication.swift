@@ -10,10 +10,8 @@ import FirebaseAuth
 
 class FirebaseAuthentication{
     
-    //Login Authentication
-    func loginAuth(email: String, password: String, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool)->(Void)){
-        
-        Auth.auth().signIn(withEmail: email, password: password) {authResult, error in
+    func loginAuth(userAuth: UserAuth, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool)->(Void)){
+        Auth.auth().signIn(withEmail: userAuth.email, password: userAuth.password) {authResult, error in
             if error == nil && authResult!.user.isEmailVerified{
                 completion(error,true)
                 self.downloadUserFormFirestore(userId: authResult!.user.uid)
@@ -25,10 +23,7 @@ class FirebaseAuthentication{
     
     private func downloadUserFormFirestore(userId: String){
         FirestoreManager().FirestorReference(.User).document(userId).getDocument { document, error in
-            guard let userDecoument = document else{
-                print("No Data Found")
-                return
-            }
+            guard let userDecoument = document else{return}
             let result = Result{
                 try? userDecoument.data (as: User.self)
             }
@@ -46,8 +41,8 @@ class FirebaseAuthentication{
     }
     
     //Sign Up Authentication
-    func signUpAuth(email: String, password: String, completion: @escaping (_ error: Error?)->Void){
-        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+    func signUpAuth(userAuth: UserAuth, completion: @escaping (_ error: Error?)->Void){
+        Auth.auth().createUser(withEmail: userAuth.email, password: userAuth.password) { authResult, error in
             completion(error)
             if error == nil {
                 authResult!.user.sendEmailVerification{ error in
@@ -55,7 +50,7 @@ class FirebaseAuthentication{
                 }
             }
             if authResult?.user != nil {
-                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: "", email: email, status: "")
+                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: "", email: userAuth.email, status: "")
                 self.saveUserToFirestore(user)
                 self.saveUserLocally(user)
             }

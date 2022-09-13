@@ -13,12 +13,9 @@ struct User: Codable{
     var pushId: String = ""
     var imageLink: String = ""
     var name, email, status: String
-    
-    
-//    func toDictionary() -> [String:Any]{
-//        if let jsonDecodedObj = try? JSONEncoder().encode(self){
-//            return try! JSONSerialization.jsonObject(with: jsonDecodedObj) as! [String:Any]
-//        }
-//        return [:]
-//    }
+}
+
+struct UserAuth{
+    var email: String
+    var password: String
 }

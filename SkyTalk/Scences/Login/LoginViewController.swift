@@ -21,12 +21,13 @@ class LoginViewController: UIViewController {
     @IBAction func loginBtn(_ sender: UIButton) {
         let email = emailTextField.text!
         let password = passTextField.text!
-        checkLoginAuthentication(email: email, password: password)
+        let userAuth = UserAuth(email: email, password: password)
+        checkLoginAuthentication(userAuth)
     }
     
     
-    private func checkLoginAuthentication(email: String, password: String){
-        FirebaseAuthentication().loginAuth(email: email, password: password) { error,isEmailVerfied  in
+    private func checkLoginAuthentication(_ userAuth: UserAuth){
+        FirebaseAuthentication().loginAuth(userAuth: userAuth) { error,isEmailVerfied  in
             if error == nil{
                 if isEmailVerfied {
                     UIAlertController.showAlert(msg:"Successful Login" ,form: self)
