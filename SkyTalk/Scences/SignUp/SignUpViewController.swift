@@ -23,6 +23,9 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
+        resendVerificationEmail()
+    }
     @IBAction func signUpBtn(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passTextField.text ?? ""
@@ -39,6 +42,15 @@ class SignUpViewController: UIViewController {
             }
             if error == nil {
                 UIAlertController.showAlert(msg: "Successful sign up", form: self)
+            }
+        }
+    }
+    private func resendVerificationEmail(){
+        FirebaseAuthentication().resendVerificationEmail(email: emailTextField.text!) { error in
+            if error == nil{
+                UIAlertController.showAlert(msg: "Verification email sent successfully", form: self)
+            }else{
+                UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
             }
         }
     }

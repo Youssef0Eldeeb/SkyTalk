@@ -23,7 +23,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="XA8-dV-S9T">
-                                <rect key="frame" x="20" y="292" width="374" height="140"/>
+                                <rect key="frame" x="20" y="292" width="374" height="230"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="24i-Ca-40w">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -53,10 +53,20 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVz-RB-ZcF">
+                                        <rect key="frame" x="0.0" y="180" width="374" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" red="0.2241546744" green="0.38501401810000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Forget Password?"/>
+                                        <connections>
+                                            <action selector="forgetPasswordBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="vfF-mq-Mtt"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-UL-V5L">
-                                <rect key="frame" x="117" y="582" width="180" height="50"/>
+                                <rect key="frame" x="117" y="652" width="180" height="50"/>
                                 <color key="backgroundColor" red="0.2241546744" green="0.38501401810000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="1DX-tC-z7F"/>
@@ -84,7 +94,7 @@
                             <constraint firstItem="XA8-dV-S9T" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="MVH-kZ-Yef"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XA8-dV-S9T" secondAttribute="trailing" constant="20" id="RNe-k6-HKW"/>
                             <constraint firstItem="fZC-Q6-u1P" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="80" id="S8j-p8-8Zr"/>
-                            <constraint firstItem="8OP-UL-V5L" firstAttribute="top" secondItem="XA8-dV-S9T" secondAttribute="bottom" constant="150" id="o5p-iA-Po6"/>
+                            <constraint firstItem="8OP-UL-V5L" firstAttribute="top" secondItem="XA8-dV-S9T" secondAttribute="bottom" constant="130" id="o5p-iA-Po6"/>
                             <constraint firstItem="XA8-dV-S9T" firstAttribute="top" secondItem="fZC-Q6-u1P" secondAttribute="bottom" constant="120" id="xzm-AO-m6R"/>
                             <constraint firstItem="fZC-Q6-u1P" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="yZs-5L-Qrr"/>
                             <constraint firstItem="XA8-dV-S9T" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yyV-LF-bzt"/>

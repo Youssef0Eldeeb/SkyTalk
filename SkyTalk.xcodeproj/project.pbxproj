@@ -12,6 +12,7 @@
 		A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */; };
 		A132CE6828CF7B78007D8DBA /* LocalDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6728CF7B78007D8DBA /* LocalDatabaseManager.swift */; };
 		A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */; };
+		A132CE6C28D159AB007D8DBA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6B28D159AB007D8DBA /* HomeViewController.swift */; };
 		A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148039B28C8AF2200FF9A76 /* AppDelegate.swift */; };
 		A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148039D28C8AF2200FF9A76 /* SceneDelegate.swift */; };
 		A14803A528C8AF2B00FF9A76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A14803A428C8AF2B00FF9A76 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		A132CE6728CF7B78007D8DBA /* LocalDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseManager.swift; sourceTree = "<group>"; };
 		A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
+		A132CE6B28D159AB007D8DBA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A148039828C8AF2200FF9A76 /* SkyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A148039B28C8AF2200FF9A76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A148039D28C8AF2200FF9A76 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,9 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				A190E04A28CA6AA70023D115 /* Home */,
-				A14803B428C8BABA00FF9A76 /* Initial */,
-				A14803C328C8CF6700FF9A76 /* SignUp */,
 				A14803AF28C8B04900FF9A76 /* Login */,
+				A14803C328C8CF6700FF9A76 /* SignUp */,
+				A14803B428C8BABA00FF9A76 /* Initial */,
 			);
 			path = Scences;
 			sourceTree = "<group>";
@@ -205,6 +207,7 @@
 		A190E04A28CA6AA70023D115 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A132CE6B28D159AB007D8DBA /* HomeViewController.swift */,
 				A190E04B28CA6ADC0023D115 /* Home.storyboard */,
 			);
 			path = Home;
@@ -340,6 +343,7 @@
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,
 				A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */,
 				A14803C028C8C7D100FF9A76 /* UiView+.swift in Sources */,
+				A132CE6C28D159AB007D8DBA /* HomeViewController.swift in Sources */,
 				A14803C228C8C8E100FF9A76 /* UIViewController+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

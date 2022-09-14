@@ -74,4 +74,17 @@ class FirebaseAuthentication{
         }
     }
     
+    func resendVerificationEmail(email:String, completion: @escaping(_ error: Error?) -> Void){
+        Auth.auth().currentUser?.reload(completion: { error in
+            Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+                completion(error)
+            })
+        })
+    }
+    func resetPassword(email: String, completion: @escaping(_ error: Error?) -> Void){
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            completion(error)
+        }
+    }
+    
 }

@@ -22,6 +22,7 @@ extension UIViewController{
     enum StoryboardEnum: String {
         case login = "Login"
         case signUp = "SignUp"
+        case home = "Home"
         
     }
     

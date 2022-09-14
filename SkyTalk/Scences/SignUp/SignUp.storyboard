@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="7ph-Ky-f2I">
-                                <rect key="frame" x="20" y="224" width="374" height="290"/>
+                                <rect key="frame" x="20" y="224" width="374" height="370"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LcE-Va-dj4">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -75,6 +75,16 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9z-ur-OcZ">
+                                        <rect key="frame" x="0.0" y="320" width="374" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="tintColor" red="0.2241546744" green="0.38501401810000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Resned Verfication Email ?"/>
+                                        <connections>
+                                            <action selector="resendVerficationEmailBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1vl-tO-cnl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="N23-3Y-9DD">
@@ -91,7 +101,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSb-0a-33s">
-                                <rect key="frame" x="117" y="594" width="180" height="50"/>
+                                <rect key="frame" x="117" y="644" width="180" height="50"/>
                                 <color key="backgroundColor" red="0.2241546744" green="0.38501401810000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="QZ7-TX-O7Y"/>
@@ -119,7 +129,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7ph-Ky-f2I" secondAttribute="trailing" constant="20" id="Fxx-jB-oRR"/>
                             <constraint firstItem="7ph-Ky-f2I" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="NGK-S1-xZR"/>
                             <constraint firstItem="7ph-Ky-f2I" firstAttribute="top" secondItem="N23-3Y-9DD" secondAttribute="bottom" constant="50" id="Rwo-2R-060"/>
-                            <constraint firstItem="DSb-0a-33s" firstAttribute="top" secondItem="7ph-Ky-f2I" secondAttribute="bottom" constant="80" id="f0W-Ts-4gF"/>
+                            <constraint firstItem="DSb-0a-33s" firstAttribute="top" secondItem="7ph-Ky-f2I" secondAttribute="bottom" constant="50" id="f0W-Ts-4gF"/>
                             <constraint firstItem="DSb-0a-33s" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="lvI-tZ-QbA"/>
                             <constraint firstItem="N23-3Y-9DD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="vhS-ya-h4l"/>
                             <constraint firstItem="7ph-Ky-f2I" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="xHg-WN-3IF"/>
