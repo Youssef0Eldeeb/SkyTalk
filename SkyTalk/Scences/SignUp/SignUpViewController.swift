@@ -10,6 +10,13 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var firstNameTitle: UILabel!
+    @IBOutlet weak var lastNameTitle: UILabel!
+    @IBOutlet weak var emailTitle: UILabel!
+    @IBOutlet weak var passwordTitle: UILabel!
+    
+    
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -19,8 +26,16 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        firstNameTitle.text = ""
+        lastNameTitle.text = ""
+        emailTitle.text = ""
+        passwordTitle.text = ""
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passTextField.delegate = self
     }
     
     @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
@@ -56,4 +71,14 @@ class SignUpViewController: UIViewController {
     }
     
    
+}
+
+extension SignUpViewController: UITextFieldDelegate{
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        firstNameTitle.text = firstNameTextField.hasText ? "First Name" : ""
+        lastNameTitle.text = lastNameTextField.hasText ? "Last Name" : ""
+        emailTitle.text = emailTextField.hasText ? "Email" : ""
+        passwordTitle.text = passTextField.hasText ? "Password" : ""
+    }
 }

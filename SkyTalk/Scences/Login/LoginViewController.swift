@@ -10,12 +10,20 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+    
+    @IBOutlet weak var emailTitle: UILabel!
+    @IBOutlet weak var passwordTitle: UILabel!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTitle.text = ""
+        passwordTitle.text = ""
         
+        emailTextField.delegate = self
+        passTextField.delegate = self
     }    
     @IBAction func forgetPasswordBtn(_ sender: UIButton) {
         forgetPassword()
@@ -60,4 +68,12 @@ class LoginViewController: UIViewController {
     }
     
     
+}
+
+extension LoginViewController: UITextFieldDelegate{
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        emailTitle.text = emailTextField.hasText ? "Email" : ""
+        passwordTitle.text = passTextField.hasText ? "Password" : ""
+    }
 }
