@@ -54,9 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             authListener = Auth.auth().addStateDidChangeListener({ auth, user in
                 Auth.auth().removeStateDidChangeListener(self.authListener!)
                 if user != nil && UserDefaults.standard.object(forKey: "currentUser") != nil{
-                    DispatchQueue.main.async {
-                        self.goToHomePage()
-                    }
+                    self.goToHomePage()
                     
                 }else{
                     self.goToRegisterationPage()

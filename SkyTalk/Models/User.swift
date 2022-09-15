@@ -18,4 +18,5 @@ struct User: Codable{
 struct UserAuth{
     var email: String
     var password: String
+    var name: String?
 }

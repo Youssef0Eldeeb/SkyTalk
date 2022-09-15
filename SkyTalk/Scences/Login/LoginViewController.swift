@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
     
     
     private func checkLoginAuthentication(_ userAuth: UserAuth){
-        FirebaseAuthentication().loginAuth(userAuth: userAuth) { error,isEmailVerfied  in
+        FirebaseAuthentication.shared.loginAuth(userAuth: userAuth) { error,isEmailVerfied  in
             if error == nil{
                 if isEmailVerfied {
                     self.goToApp()
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         }
     }
     private func forgetPassword(){
-        FirebaseAuthentication().resetPassword(email: emailTextField.text!) { error in
+        FirebaseAuthentication.shared.resetPassword(email: emailTextField.text!) { error in
             if error == nil{
                 UIAlertController.showAlert(msg: "Reset password email has been sent", form: self)
             }else{

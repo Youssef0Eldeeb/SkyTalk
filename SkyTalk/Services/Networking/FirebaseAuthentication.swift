@@ -10,6 +10,17 @@ import FirebaseAuth
 
 class FirebaseAuthentication{
     
+    static let shared = FirebaseAuthentication()
+    
+    var currentUser: User? {
+        if Auth.auth().currentUser != nil{
+            let fetchedData = LocalDatabaseManager.shared.fetchLocalUser()
+            return fetchedData
+        }else{
+            return nil
+        }
+    }
+    
     func loginAuth(userAuth: UserAuth, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool)->(Void)){
         Auth.auth().signIn(withEmail: userAuth.email, password: userAuth.password) {authResult, error in
             if error == nil && authResult!.user.isEmailVerified{
@@ -22,7 +33,7 @@ class FirebaseAuthentication{
     }
     
     private func downloadUserFormFirestore(userId: String){
-        FirestoreManager().FirestorReference(.User).document(userId).getDocument { document, error in
+        FirestoreManager.shared.FirestorReference(.User).document(userId).getDocument { document, error in
             guard let userDecoument = document else{return}
             let result = Result{
                 try? userDecoument.data (as: User.self)
@@ -30,7 +41,7 @@ class FirebaseAuthentication{
             switch result {
             case .success(let userObj):
                 if let user = userObj {
-                    self.saveUserLocally(user)
+                    LocalDatabaseManager.shared.saveUserLocally(user)
                 }else{
                     print("No Document Found")
                 }
@@ -50,9 +61,9 @@ class FirebaseAuthentication{
                 }
             }
             if authResult?.user != nil {
-                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: "", email: userAuth.email, status: "")
+                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
                 self.saveUserToFirestore(user)
-                self.saveUserLocally(user)
+                LocalDatabaseManager.shared.saveUserLocally(user)
             }
             
         }
@@ -60,18 +71,11 @@ class FirebaseAuthentication{
     
     private func saveUserToFirestore(_ user: User){
         do {
-            try FirestoreManager().FirestorReference(.User).document(user.id).setData(from: user)
+            try FirestoreManager.shared.FirestorReference(.User).document(user.id).setData(from: user)
         } catch  {
             print(error.localizedDescription)
         }
         
-    }
-    
-    private func saveUserLocally(_ user: User){
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(user){
-            UserDefaults.standard.set(data, forKey: "currentUser")
-        }
     }
     
     func resendVerificationEmail(email:String, completion: @escaping(_ error: Error?) -> Void){
@@ -83,6 +87,16 @@ class FirebaseAuthentication{
     }
     func resetPassword(email: String, completion: @escaping(_ error: Error?) -> Void){
         Auth.auth().sendPasswordReset(withEmail: email) { error in
+            completion(error)
+        }
+    }
+    
+    func logoutCurrentUser(completion: @escaping (_ error: Error?) -> (Void)){
+        do{
+            try Auth.auth().signOut()
+            LocalDatabaseManager.shared.removeLocalUser()
+            completion(nil)
+        }catch let error as NSError{
             completion(error)
         }
     }

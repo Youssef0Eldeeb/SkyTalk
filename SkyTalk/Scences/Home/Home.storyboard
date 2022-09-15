@@ -208,6 +208,9 @@
                                                     <state key="normal" title="Log Out">
                                                         <color key="titleColor" systemColor="systemRedColor"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="logOut:" destination="Opb-HL-17D" eventType="touchUpInside" id="sl5-AF-Khi"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -226,6 +229,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="x9S-6h-PVo"/>
+                    <connections>
+                        <outlet property="appVersion" destination="1N3-3b-iuT" id="CXp-eu-QT6"/>
+                        <outlet property="image" destination="4eC-aY-uln" id="Mfd-DC-U37"/>
+                        <outlet property="name" destination="I16-Ku-BY4" id="71l-yu-3j3"/>
+                        <outlet property="status" destination="mei-dg-Juc" id="paJ-NF-Tks"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yId-Cy-WdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
