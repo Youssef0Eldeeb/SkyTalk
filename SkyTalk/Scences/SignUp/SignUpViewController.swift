@@ -8,14 +8,12 @@
 import UIKit
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var firstNameTitle: UILabel!
     @IBOutlet weak var lastNameTitle: UILabel!
     @IBOutlet weak var emailTitle: UILabel!
     @IBOutlet weak var passwordTitle: UILabel!
-    
-    
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -23,21 +21,29 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
+    var imagePicker: UIImagePickerController!
+    var selectedImagee: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        firstNameTitle.text = ""
-        lastNameTitle.text = ""
-        emailTitle.text = ""
-        passwordTitle.text = ""
+        setupTextFieldsUI()
         
-        firstNameTextField.delegate = self
-        lastNameTextField.delegate = self
-        emailTextField.delegate = self
-        passTextField.delegate = self
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
     }
     
+    @IBAction func choosePhoto(_ sender: UIButton) {
+        present(imagePicker, animated: true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage{
+            selectedImagee = selectedImage
+            profileImageView.image = selectedImage
+        }
+        dismiss(animated: true)
+    }
     @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
         resendVerificationEmail()
     }
@@ -47,7 +53,7 @@ class SignUpViewController: UIViewController {
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let name = firstName + " " + lastName
-        let userAuth = UserAuth(email: email, password: password, name: name)
+        let userAuth = UserAuth(email: email, password: password, name: name, image: selectedImagee)
         checkSignupAuthentication(userAuth)
     }
     
@@ -71,6 +77,17 @@ class SignUpViewController: UIViewController {
                 UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
             }
         }
+    }
+    private func setupTextFieldsUI(){
+        firstNameTitle.text = ""
+        lastNameTitle.text = ""
+        emailTitle.text = ""
+        passwordTitle.text = ""
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailTextField.delegate = self
+        passTextField.delegate = self
     }
     
    

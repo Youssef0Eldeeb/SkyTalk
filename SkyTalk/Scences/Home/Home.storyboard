@@ -90,6 +90,11 @@
                                                         <constraint firstAttribute="width" constant="80" id="MZD-O9-hwL"/>
                                                         <constraint firstAttribute="height" constant="80" id="vRn-uH-0ak"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRedius">
+                                                            <real key="value" value="40"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="5fA-rN-2H2">
                                                     <rect key="frame" x="120" y="15" width="237.5" height="53"/>

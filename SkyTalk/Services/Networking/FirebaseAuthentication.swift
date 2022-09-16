@@ -61,7 +61,8 @@ class FirebaseAuthentication{
                 }
             }
             if authResult?.user != nil {
-                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
+                let imageData = userAuth.image?.pngData()
+                let user = User(id: authResult!.user.uid, pushId: "", imageLink: imageData!, name: userAuth.name ?? "", email: userAuth.email, status: "")
                 self.saveUserToFirestore(user)
                 LocalDatabaseManager.shared.saveUserLocally(user)
             }

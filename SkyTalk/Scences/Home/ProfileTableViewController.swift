@@ -42,6 +42,7 @@ class ProfileTableViewController: UITableViewController {
         if let user = FirebaseAuthentication.shared.currentUser {
             name.text = user.name
             status.text = user.status
+            image.image = UIImage(data: user.imageLink) 
             
             appVersion.text = "App Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         }

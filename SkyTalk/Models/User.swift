@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 struct User: Codable{
     var id: String = ""
     var pushId: String = ""
-    var imageLink: String = ""
+    var imageLink: Data
     var name, email, status: String
 }
 
@@ -19,4 +19,7 @@ struct UserAuth{
     var email: String
     var password: String
     var name: String?
+    var image: UIImage?
 }
+
+
