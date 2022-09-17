@@ -24,6 +24,8 @@ extension UIViewController{
         case login = "Login"
         case signUp = "SignUp"
         case home = "Home"
+        case editProfile = "EditProfile"
+        case status = "Status"
         
     }
     

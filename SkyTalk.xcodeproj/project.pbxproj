@@ -26,7 +26,11 @@
 		A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */; };
 		A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14803C628C8CFA400FF9A76 /* SignUp.storyboard */; };
 		A14803C928C9372C00FF9A76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */; };
+		A148426B28D55A25004E47B5 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A148426A28D55A25004E47B5 /* Status.storyboard */; };
+		A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148426C28D55A38004E47B5 /* StatusViewController.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
+		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
+		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +58,11 @@
 		A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		A14803C628C8CFA400FF9A76 /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 		A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A148426A28D55A25004E47B5 /* Status.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
+		A148426C28D55A38004E47B5 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
+		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +175,15 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		A148426928D559F5004E47B5 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				A148426A28D55A25004E47B5 /* Status.storyboard */,
+				A148426C28D55A38004E47B5 /* StatusViewController.swift */,
+			);
+			path = Status;
+			sourceTree = "<group>";
+		};
 		A190E03728CA36CB0023D115 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +204,7 @@
 		A190E03928CA36E20023D115 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				A1D23D6A28D53D0A0085300D /* EditProfile */,
 				A190E04A28CA6AA70023D115 /* Home */,
 				A14803AF28C8B04900FF9A76 /* Login */,
 				A14803C328C8CF6700FF9A76 /* SignUp */,
@@ -211,6 +229,16 @@
 				A132CE6F28D223C6007D8DBA /* ProfileTableViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		A1D23D6A28D53D0A0085300D /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				A1D23D6B28D53D310085300D /* EditProfile.storyboard */,
+				A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */,
+				A148426928D559F5004E47B5 /* Status */,
+			);
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +305,8 @@
 				A14803BC28C8BC9200FF9A76 /* Login.storyboard in Resources */,
 				A14803A828C8AF2B00FF9A76 /* LaunchScreen.storyboard in Resources */,
 				A14803C928C9372C00FF9A76 /* GoogleService-Info.plist in Resources */,
+				A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */,
+				A148426B28D55A25004E47B5 /* Status.storyboard in Resources */,
 				A14803A528C8AF2B00FF9A76 /* Assets.xcassets in Resources */,
 				A14803BA28C8BB7300FF9A76 /* Initial.storyboard in Resources */,
 				A14803C728C8CFA400FF9A76 /* SignUp.storyboard in Resources */,
@@ -333,8 +363,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */,
+				A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
+				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
 				A132CE6828CF7B78007D8DBA /* LocalDatabaseManager.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
 				A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */,

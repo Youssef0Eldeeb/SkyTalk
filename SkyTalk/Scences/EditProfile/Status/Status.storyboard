@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Status View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="StatusViewController" id="Y6W-OH-hqX" customClass="StatusViewController" customModule="SkyTalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oju-Rl-ioY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Status" id="oYD-co-ECd">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="uZa-4M-rZb">
+                                            <connections>
+                                                <action selector="cancel:" destination="Y6W-OH-hqX" id="6Bc-8I-D4r"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="91r-tg-igM">
+                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                            <connections>
+                                                <action selector="done:" destination="Y6W-OH-hqX" id="M83-bg-cd2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="Enter your status" textAlignment="natural" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="f9b-ac-QvA">
+                                <rect key="frame" x="10" y="54" width="394" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="rxd-KI-Nyd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oju-Rl-ioY" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Qms-yS-RD5"/>
+                            <constraint firstAttribute="trailing" secondItem="oju-Rl-ioY" secondAttribute="trailing" id="Sa8-eW-d9G"/>
+                            <constraint firstItem="oju-Rl-ioY" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="cf3-8l-NYI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="f9b-ac-QvA" secondAttribute="trailing" constant="10" id="hRI-f3-mON"/>
+                            <constraint firstItem="f9b-ac-QvA" firstAttribute="top" secondItem="oju-Rl-ioY" secondAttribute="bottom" constant="10" id="had-XS-AdK"/>
+                            <constraint firstItem="f9b-ac-QvA" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="nD1-xc-sCB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="done" destination="91r-tg-igM" id="xat-gh-FAi"/>
+                        <outlet property="status" destination="f9b-ac-QvA" id="HOZ-TN-N0F"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="81"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

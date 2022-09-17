@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var passTextField: UITextField!
     
     var imagePicker: UIImagePickerController!
-    var selectedImagee: UIImage?
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage{
-            selectedImagee = selectedImage
+            self.selectedImage = selectedImage
             profileImageView.image = selectedImage
         }
         dismiss(animated: true)
@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let name = firstName + " " + lastName
-        let userAuth = UserAuth(email: email, password: password, name: name, image: selectedImagee)
+        let userAuth = UserAuth(email: email, password: password, name: name, image: selectedImage)
         checkSignupAuthentication(userAuth)
     }
     
