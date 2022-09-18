@@ -15,6 +15,7 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var appVersion: UILabel!
     
     var user: User?
+    var navigatImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,12 @@ class ProfileTableViewController: UITableViewController {
             status.text = user.status
             
             appVersion.text = "App Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
+            if user.imageLink != ""{
+                FileStorageManager.downloadImage(imageUrl: user.imageLink) { image in
+                    self.image.image = image
+                    self.navigatImage = image
+                }
+            }
         }
     }
    
@@ -63,6 +70,7 @@ extension ProfileTableViewController{
         if indexPath.section == 0 && indexPath.row == 0 {
             let controller = EditProfileTableViewController.instantiate(name: .editProfile)
             controller.user = user
+            controller.comingImage = navigatImage
             navigationController?.pushViewController(controller, animated: true)
         }
     }

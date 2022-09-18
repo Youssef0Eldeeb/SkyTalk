@@ -9,16 +9,18 @@ import UIKit
 
 class StatusViewController: UIViewController {
 
-    
     @IBOutlet weak var status: UITextField!
-    
     @IBOutlet weak var done: UIBarButtonItem!
+    
+    var delegate: StatusCommunicator?
+    var statusComing: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         status.delegate = self
         done.tintColor = .systemGray2
+        status.text = statusComing
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
@@ -27,6 +29,11 @@ class StatusViewController: UIViewController {
     
     @IBAction func done(_ sender: UIBarButtonItem) {
         if done.tintColor == .systemBlue{
+            let status = status.text!
+            delegate?.changeStatus(statusStr: status)
+            if var user = FirebaseAuthentication.shared.currentUser{
+                user.status = status
+            }
             dismiss(animated: true)
         }
     }

@@ -46,6 +46,10 @@ class SignUpViewController: UIViewController {
         let name = firstName + " " + lastName
         let userAuth = UserAuth(email: email, password: password, name: name)
         checkSignupAuthentication(userAuth)
+        if selectedImage != nil{
+            uploadImage(selectedImage!)
+            saveImageLocally()
+        }
     }
     
     
@@ -81,6 +85,22 @@ class SignUpViewController: UIViewController {
         lastNameTextField.delegate = self
         emailTextField.delegate = self
         passTextField.delegate = self
+    }
+    
+    private func uploadImage(_ image: UIImage){
+        let fileDirectory = "Image/" + "_\(FirebaseAuthentication.shared.currntId)" + ".png"
+        FileStorageManager.uploadImage(image, directory: fileDirectory) { imageLink in
+            if var user = FirebaseAuthentication.shared.currentUser{
+                user.imageLink = imageLink ?? ""
+                UserDefaultManager.shared.saveUserLocally(user)
+                FirestoreManager.shared.saveUserToFirestore(user)
+            }
+        }
+    }
+    private func saveImageLocally(){
+        let imageData = selectedImage!.pngData()! as NSData
+        let userId =  FirebaseAuthentication.shared.currntId
+        FileDocumentManager.shared.saveFileLocally(fileData:imageData, fileName: userId)
     }
     
    

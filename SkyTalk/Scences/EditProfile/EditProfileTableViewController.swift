@@ -12,21 +12,22 @@ class EditProfileTableViewController: UITableViewController {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var status: UILabel!
     
     var user: User?
+    var comingImage: UIImage?
     var imagePicker: UIImagePickerController!
     var selectedImage: UIImage?
+    var statusGlobal: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupUI()
-        setupImagePicker()
-        setupTextField()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setupUI()
+        setupImagePicker()
+        setupTextField()
     }
 
     @IBAction func edit(_ sender: UIButton) {
@@ -36,8 +37,10 @@ class EditProfileTableViewController: UITableViewController {
     @IBAction func done(_ sender: UIBarButtonItem) {
 
         updateUserStrData()
-        uploadImage(selectedImage!)
-        saveImageLocally()
+        if selectedImage != nil{
+            uploadImage(selectedImage!)
+            saveImageLocally()
+        }
         navigationController?.popViewController(animated: true)
         
     }
@@ -45,13 +48,14 @@ class EditProfileTableViewController: UITableViewController {
         if name.text != ""{
             if var user = FirebaseAuthentication.shared.currentUser {
                 user.name = name.text!
+                user.status = statusGlobal ?? ""
                 UserDefaultManager.shared.saveUserLocally(user)
                 FirestoreManager.shared.saveUserToFirestore(user)
             }
         }
     }
     private func uploadImage(_ image: UIImage){
-        let fileDirectory = "Image/" + "\(FirebaseAuthentication.shared.currntId)" + ".png"
+        let fileDirectory = "Image/" + "_\(FirebaseAuthentication.shared.currntId)" + ".png"
         FileStorageManager.uploadImage(image, directory: fileDirectory) { imageLink in
             if var user = FirebaseAuthentication.shared.currentUser{
                 user.imageLink = imageLink ?? ""
@@ -67,7 +71,9 @@ class EditProfileTableViewController: UITableViewController {
     }
     
     private func setupUI(){
-        name.text = user?.name
+        name.text = user?.name ?? ""
+        image.image = comingImage
+        status.text = user?.status ?? ""
     }
     
     private func setupTextField(){
@@ -110,6 +116,8 @@ extension EditProfileTableViewController{
         if indexPath.section == 1 && indexPath.row == 0 {
             //status cell
             let controller = StatusViewController.instantiate(name: .status)
+            controller.statusComing = user?.status
+            controller.delegate = self
             present(controller, animated: true)
         }
     }
@@ -121,5 +129,14 @@ extension EditProfileTableViewController: UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
+    }
+}
+
+// MARK: - Extension for Delegation of StatusCommunicator
+extension EditProfileTableViewController: StatusCommunicator{
+    
+    func changeStatus(statusStr: String) {
+        status.text = statusStr
+        statusGlobal = statusStr
     }
 }

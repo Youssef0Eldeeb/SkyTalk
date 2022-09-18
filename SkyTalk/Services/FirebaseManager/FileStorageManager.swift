@@ -33,4 +33,35 @@ class FileStorageManager{
             }
         })
     }
+    
+    class func downloadImage(imageUrl: String, completion: @escaping (_ image: UIImage?) -> (Void)){
+        let imageFileName = gitAcualFileName(fileUrl: imageUrl)
+        if FileDocumentManager.shared.fileExistsAtPath(path: imageFileName){
+            let imagePath = FileDocumentManager.shared.getFilePath(fileName: imageFileName)
+            if let fileContent = UIImage(contentsOfFile: imagePath){
+                completion(fileContent)
+            }else{
+                completion(nil)
+            }
+        }else{
+            if imageUrl != ""{
+                let documentUrl = URL(string: imageUrl)
+                let data = NSData(contentsOf: documentUrl!)
+                if data != nil{
+                    FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: imageFileName)
+                    DispatchQueue.main.async {
+                        completion(UIImage(data: data! as Data))
+                    }
+                }else{
+                    completion(nil)
+                }
+            }
+        }
+    }
+    static func gitAcualFileName(fileUrl: String) -> String{
+        let actualUrl = fileUrl.components(separatedBy: "_").last
+        let nameWithExtension = actualUrl?.components(separatedBy: "?").first
+        let actualName = nameWithExtension?.components(separatedBy: ".").first
+        return actualName!
+    }
 }

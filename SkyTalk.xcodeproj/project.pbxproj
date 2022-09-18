@@ -30,7 +30,8 @@
 		A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148426C28D55A38004E47B5 /* StatusViewController.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
 		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
-		A1AE4A7428D737D6000CC52D /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileManager.swift */; };
+		A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */; };
+		A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */; };
 		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
 		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
@@ -64,7 +65,8 @@
 		A148426C28D55A38004E47B5 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
-		A1AE4A7328D737D6000CC52D /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentManager.swift; sourceTree = "<group>"; };
+		A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCommunicator.swift; sourceTree = "<group>"; };
 		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */,
-				A1AE4A7328D737D6000CC52D /* FileManager.swift */,
+				A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */,
 			);
 			path = LocalDatabaseManager;
 			sourceTree = "<group>";
@@ -129,6 +131,7 @@
 		A148039A28C8AF2200FF9A76 /* SkyTalk */ = {
 			isa = PBXGroup;
 			children = (
+				A1AE4A7528D76AF8000CC52D /* Protocols */,
 				A190E03728CA36CB0023D115 /* Services */,
 				A190E03828CA36DA0023D115 /* Models */,
 				A190E03928CA36E20023D115 /* Scences */,
@@ -235,6 +238,14 @@
 				A132CE6F28D223C6007D8DBA /* ProfileTableViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		A1AE4A7528D76AF8000CC52D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		A1D23D6A28D53D0A0085300D /* EditProfile */ = {
@@ -368,12 +379,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1AE4A7428D737D6000CC52D /* FileManager.swift in Sources */,
+				A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */,
 				A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */,
 				A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
 				A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
+				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
 				A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
