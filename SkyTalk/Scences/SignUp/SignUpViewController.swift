@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var firstNameTitle: UILabel!
     @IBOutlet weak var lastNameTitle: UILabel!
@@ -29,21 +29,12 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         setupTextFieldsUI()
         
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
     }
     
     @IBAction func choosePhoto(_ sender: UIButton) {
         present(imagePicker, animated: true)
     }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage{
-            self.selectedImage = selectedImage
-            profileImageView.image = selectedImage
-        }
-        dismiss(animated: true)
-    }
+    
     @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
         resendVerificationEmail()
     }
@@ -53,7 +44,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let name = firstName + " " + lastName
-        let userAuth = UserAuth(email: email, password: password, name: name, image: selectedImage)
+        let userAuth = UserAuth(email: email, password: password, name: name)
         checkSignupAuthentication(userAuth)
     }
     
@@ -69,6 +60,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
+    
     private func resendVerificationEmail(){
         FirebaseAuthentication.shared.resendVerificationEmail(email: emailTextField.text!) { error in
             if error == nil{
@@ -78,6 +70,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
         }
     }
+    
     private func setupTextFieldsUI(){
         firstNameTitle.text = ""
         lastNameTitle.text = ""
@@ -92,6 +85,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
    
 }
+// MARK: - Extension for Delegation of TextField
 
 extension SignUpViewController: UITextFieldDelegate{
     
@@ -100,5 +94,23 @@ extension SignUpViewController: UITextFieldDelegate{
         lastNameTitle.text = lastNameTextField.hasText ? "Last Name" : ""
         emailTitle.text = emailTextField.hasText ? "Email" : ""
         passwordTitle.text = passTextField.hasText ? "Password" : ""
+    }
+}
+// MARK: - Extension for Image Picker
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+ 
+    private func setupImagePicker(){
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[.originalImage] as? UIImage{
+            self.selectedImage = selectedImage
+            profileImageView.image = selectedImage
+        }
+        dismiss(animated: true)
     }
 }

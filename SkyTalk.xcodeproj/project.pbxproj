@@ -10,7 +10,7 @@
 		A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */; };
 		A100475728CCC5FE000FF3A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100475628CCC5FE000FF3A0 /* User.swift */; };
 		A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */; };
-		A132CE6828CF7B78007D8DBA /* LocalDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6728CF7B78007D8DBA /* LocalDatabaseManager.swift */; };
+		A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */; };
 		A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */; };
 		A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6F28D223C6007D8DBA /* ProfileTableViewController.swift */; };
 		A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148039B28C8AF2200FF9A76 /* AppDelegate.swift */; };
@@ -29,6 +29,8 @@
 		A148426B28D55A25004E47B5 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A148426A28D55A25004E47B5 /* Status.storyboard */; };
 		A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148426C28D55A38004E47B5 /* StatusViewController.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
+		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
+		A1AE4A7428D737D6000CC52D /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileManager.swift */; };
 		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
 		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
@@ -40,7 +42,7 @@
 		A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		A100475628CCC5FE000FF3A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
-		A132CE6728CF7B78007D8DBA /* LocalDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseManager.swift; sourceTree = "<group>"; };
+		A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		A132CE6F28D223C6007D8DBA /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		A148039828C8AF2200FF9A76 /* SkyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,8 @@
 		A148426A28D55A25004E47B5 /* Status.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
 		A148426C28D55A38004E47B5 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
+		A1AE4A7328D737D6000CC52D /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -98,7 +102,8 @@
 		A132CE6628CF7AC3007D8DBA /* LocalDatabaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				A132CE6728CF7B78007D8DBA /* LocalDatabaseManager.swift */,
+				A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */,
+				A1AE4A7328D737D6000CC52D /* FileManager.swift */,
 			);
 			path = LocalDatabaseManager;
 			sourceTree = "<group>";
@@ -188,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				A132CE6628CF7AC3007D8DBA /* LocalDatabaseManager */,
-				A190E03A28CA37160023D115 /* Networking */,
+				A190E03A28CA37160023D115 /* FirebaseManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -213,13 +218,14 @@
 			path = Scences;
 			sourceTree = "<group>";
 		};
-		A190E03A28CA37160023D115 /* Networking */ = {
+		A190E03A28CA37160023D115 /* FirebaseManager */ = {
 			isa = PBXGroup;
 			children = (
-				A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */,
 				A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */,
+				A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */,
+				A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */,
 			);
-			path = Networking;
+			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
 		A190E04A28CA6AA70023D115 /* Home */ = {
@@ -362,12 +368,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1AE4A7428D737D6000CC52D /* FileManager.swift in Sources */,
 				A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */,
 				A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
+				A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
-				A132CE6828CF7B78007D8DBA /* LocalDatabaseManager.swift in Sources */,
+				A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
 				A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */,
 				A100475728CCC5FE000FF3A0 /* User.swift in Sources */,

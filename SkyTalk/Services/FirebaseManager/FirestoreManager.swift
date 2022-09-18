@@ -15,6 +15,15 @@ class FirestoreManager{
     func FirestorReference (_ collectionReference: FCollectionRefernce) -> CollectionReference {
         return Firestore.firestore().collection(collectionReference.rawValue)
     }
+    
+    func saveUserToFirestore(_ user: User){
+        do {
+            try FirestorReference(.User).document(user.id).setData(from: user)
+        } catch  {
+            print(error.localizedDescription)
+        }
+        
+    }
 
 }
 

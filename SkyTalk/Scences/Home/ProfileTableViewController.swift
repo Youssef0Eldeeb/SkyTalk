@@ -18,40 +18,42 @@ class ProfileTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        showUserInfo()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadAndShowUserInfo()
+    }
+
     @IBAction func logOut(_ sender: UIButton) {
         FirebaseAuthentication.shared.logoutCurrentUser { error in
             if error == nil{
-                let controller = InitialViewController.instantiate(name: .initial)
-                controller.modalPresentationStyle = .fullScreen
-                controller.modalTransitionStyle = .crossDissolve
-                self.present(controller, animated: true, completion: nil)
-                
+                self.goBackToHome()
             }else{
                 UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
             }
         }
     }
+    private func goBackToHome(){
+        let controller = InitialViewController.instantiate(name: .initial)
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.present(controller, animated: true, completion: nil)
+    }
     
     
     
-    private func showUserInfo(){
+    private func loadAndShowUserInfo(){
         if let user = FirebaseAuthentication.shared.currentUser {
             self.user = user
             name.text = user.name
             status.text = user.status
-            image.image = UIImage(data: user.imageLink) 
             
             appVersion.text = "App Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
         }
     }
    
 }
+// MARK: - Extension for some properites of table view
 
 extension ProfileTableViewController{
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

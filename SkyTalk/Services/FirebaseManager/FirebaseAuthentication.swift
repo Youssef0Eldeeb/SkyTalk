@@ -12,9 +12,12 @@ class FirebaseAuthentication{
     
     static let shared = FirebaseAuthentication()
     
+    var currntId: String{
+        return Auth.auth().currentUser!.uid
+    }
     var currentUser: User? {
         if Auth.auth().currentUser != nil{
-            let fetchedData = LocalDatabaseManager.shared.fetchLocalUser()
+            let fetchedData = UserDefaultManager.shared.fetchLocalUser()
             return fetchedData
         }else{
             return nil
@@ -41,7 +44,7 @@ class FirebaseAuthentication{
             switch result {
             case .success(let userObj):
                 if let user = userObj {
-                    LocalDatabaseManager.shared.saveUserLocally(user)
+                    UserDefaultManager.shared.saveUserLocally(user)
                 }else{
                     print("No Document Found")
                 }
@@ -61,23 +64,15 @@ class FirebaseAuthentication{
                 }
             }
             if authResult?.user != nil {
-                let imageData = userAuth.image?.pngData()
-                let user = User(id: authResult!.user.uid, pushId: "", imageLink: imageData!, name: userAuth.name ?? "", email: userAuth.email, status: "")
-                self.saveUserToFirestore(user)
-                LocalDatabaseManager.shared.saveUserLocally(user)
+                let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
+                FirestoreManager.shared.saveUserToFirestore(user)
+                UserDefaultManager.shared.saveUserLocally(user)
             }
             
         }
     }
     
-    private func saveUserToFirestore(_ user: User){
-        do {
-            try FirestoreManager.shared.FirestorReference(.User).document(user.id).setData(from: user)
-        } catch  {
-            print(error.localizedDescription)
-        }
-        
-    }
+    
     
     func resendVerificationEmail(email:String, completion: @escaping(_ error: Error?) -> Void){
         Auth.auth().currentUser?.reload(completion: { error in
@@ -95,7 +90,7 @@ class FirebaseAuthentication{
     func logoutCurrentUser(completion: @escaping (_ error: Error?) -> (Void)){
         do{
             try Auth.auth().signOut()
-            LocalDatabaseManager.shared.removeLocalUser()
+            UserDefaultManager.shared.removeLocalUser()
             completion(nil)
         }catch let error as NSError{
             completion(error)

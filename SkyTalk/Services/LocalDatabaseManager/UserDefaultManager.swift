@@ -7,9 +7,9 @@
 
 import Foundation
 
-class LocalDatabaseManager{
+class UserDefaultManager{
     
-    static let shared = LocalDatabaseManager()
+    static let shared = UserDefaultManager()
     
     let key = "currentUser"
     let userDefault = UserDefaults.standard

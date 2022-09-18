@@ -19,11 +19,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTitle.text = ""
-        passwordTitle.text = ""
-        
-        emailTextField.delegate = self
-        passTextField.delegate = self
+        setupUI()
     }    
     @IBAction func forgetPasswordBtn(_ sender: UIButton) {
         forgetPassword()
@@ -50,6 +46,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     private func forgetPassword(){
         FirebaseAuthentication.shared.resetPassword(email: emailTextField.text!) { error in
             if error == nil{
@@ -59,6 +56,7 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
     private func goToApp(){
         let controller = UITabBarController.instantiate(name: .home)
         
@@ -67,8 +65,18 @@ class LoginViewController: UIViewController {
         self.present(controller, animated: true)
     }
     
+    private func setupUI(){
+        emailTitle.text = ""
+        passwordTitle.text = ""
+        
+        emailTextField.delegate = self
+        passTextField.delegate = self
+    }
+    
     
 }
+
+// MARK: - Extension for Delegation of TextField
 
 extension LoginViewController: UITextFieldDelegate{
     
