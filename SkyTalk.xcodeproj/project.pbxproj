@@ -32,6 +32,8 @@
 		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
 		A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */; };
 		A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */; };
+		A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE950F28DA03A90036C03C /* SingleUserTableViewCell.swift */; };
+		A1BE951228DA042A0036C03C /* UsersChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE951128DA042A0036C03C /* UsersChatsTableViewController.swift */; };
 		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
 		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
@@ -67,6 +69,8 @@
 		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
 		A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentManager.swift; sourceTree = "<group>"; };
 		A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCommunicator.swift; sourceTree = "<group>"; };
+		A1BE950F28DA03A90036C03C /* SingleUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserTableViewCell.swift; sourceTree = "<group>"; };
+		A1BE951128DA042A0036C03C /* UsersChatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersChatsTableViewController.swift; sourceTree = "<group>"; };
 		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 			children = (
 				A190E04B28CA6ADC0023D115 /* Home.storyboard */,
 				A132CE6F28D223C6007D8DBA /* ProfileTableViewController.swift */,
+				A1BE951128DA042A0036C03C /* UsersChatsTableViewController.swift */,
+				A1BE950F28DA03A90036C03C /* SingleUserTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -387,11 +393,13 @@
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
+				A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */,
 				A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
 				A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */,
 				A100475728CCC5FE000FF3A0 /* User.swift in Sources */,
 				A14803B628C8BAD100FF9A76 /* InitialViewController.swift in Sources */,
+				A1BE951228DA042A0036C03C /* UsersChatsTableViewController.swift in Sources */,
 				A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */,
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,
 				A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */,

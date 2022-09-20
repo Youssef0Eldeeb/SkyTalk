@@ -28,28 +28,9 @@ class FirebaseAuthentication{
         Auth.auth().signIn(withEmail: userAuth.email, password: userAuth.password) {authResult, error in
             if error == nil && authResult!.user.isEmailVerified{
                 completion(error,true)
-                self.downloadUserFormFirestore(userId: authResult!.user.uid)
+                FirestoreManager.shared.downloadUserFormFirestore(userId: authResult!.user.uid)
             }else {
                 completion(error,false)
-            }
-        }
-    }
-    
-    private func downloadUserFormFirestore(userId: String){
-        FirestoreManager.shared.FirestorReference(.User).document(userId).getDocument { document, error in
-            guard let userDecoument = document else{return}
-            let result = Result{
-                try? userDecoument.data (as: User.self)
-            }
-            switch result {
-            case .success(let userObj):
-                if let user = userObj {
-                    UserDefaultManager.shared.saveUserLocally(user)
-                }else{
-                    print("No Document Found")
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
         }
     }

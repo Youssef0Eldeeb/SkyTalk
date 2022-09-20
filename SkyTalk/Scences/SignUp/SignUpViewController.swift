@@ -15,29 +15,23 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailTitle: UILabel!
     @IBOutlet weak var passwordTitle: UILabel!
     
-    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
-    var imagePicker: UIImagePickerController!
-    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupTextFieldsUI()
-        
     }
-    
-    @IBAction func choosePhoto(_ sender: UIButton) {
-        present(imagePicker, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        setupTextFieldsUI()
     }
     
     @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
         resendVerificationEmail()
     }
+    
     @IBAction func signUpBtn(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passTextField.text ?? ""
@@ -46,13 +40,7 @@ class SignUpViewController: UIViewController {
         let name = firstName + " " + lastName
         let userAuth = UserAuth(email: email, password: password, name: name)
         checkSignupAuthentication(userAuth)
-        if selectedImage != nil{
-            uploadImage(selectedImage!)
-            saveImageLocally()
-        }
     }
-    
-    
     
     private func checkSignupAuthentication(_ userAuth: UserAuth){
         FirebaseAuthentication.shared.signUpAuth(userAuth: userAuth) { error in
@@ -87,21 +75,6 @@ class SignUpViewController: UIViewController {
         passTextField.delegate = self
     }
     
-    private func uploadImage(_ image: UIImage){
-        let fileDirectory = "Image/" + "_\(FirebaseAuthentication.shared.currntId)" + ".png"
-        FileStorageManager.uploadImage(image, directory: fileDirectory) { imageLink in
-            if var user = FirebaseAuthentication.shared.currentUser{
-                user.imageLink = imageLink ?? ""
-                UserDefaultManager.shared.saveUserLocally(user)
-                FirestoreManager.shared.saveUserToFirestore(user)
-            }
-        }
-    }
-    private func saveImageLocally(){
-        let imageData = selectedImage!.pngData()! as NSData
-        let userId =  FirebaseAuthentication.shared.currntId
-        FileDocumentManager.shared.saveFileLocally(fileData:imageData, fileName: userId)
-    }
     
    
 }
@@ -114,23 +87,5 @@ extension SignUpViewController: UITextFieldDelegate{
         lastNameTitle.text = lastNameTextField.hasText ? "Last Name" : ""
         emailTitle.text = emailTextField.hasText ? "Email" : ""
         passwordTitle.text = passTextField.hasText ? "Password" : ""
-    }
-}
-// MARK: - Extension for Image Picker
-
-extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
- 
-    private func setupImagePicker(){
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let selectedImage = info[.originalImage] as? UIImage{
-            self.selectedImage = selectedImage
-            profileImageView.image = selectedImage
-        }
-        dismiss(animated: true)
     }
 }

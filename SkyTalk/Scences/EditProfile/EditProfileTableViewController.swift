@@ -72,7 +72,7 @@ class EditProfileTableViewController: UITableViewController {
     
     private func setupUI(){
         name.text = user?.name ?? ""
-        image.image = comingImage
+        image.image = comingImage ?? UIImage(systemName: "person.crop.circle.fill")?.withTintColor(.systemGray2)
         status.text = user?.status ?? ""
     }
     
@@ -109,10 +109,11 @@ extension EditProfileTableViewController: UIImagePickerControllerDelegate, UINav
 extension EditProfileTableViewController{
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0.0 : 30.0
+        return section == 0 ? 0 : 30
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
             //status cell
             let controller = StatusViewController.instantiate(name: .status)

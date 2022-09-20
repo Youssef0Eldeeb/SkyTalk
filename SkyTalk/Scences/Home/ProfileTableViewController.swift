@@ -67,6 +67,7 @@ extension ProfileTableViewController{
         return section == 0 ? 0.0 : 10.0
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 0 {
             let controller = EditProfileTableViewController.instantiate(name: .editProfile)
             controller.user = user
