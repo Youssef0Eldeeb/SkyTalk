@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */; };
 		A100475728CCC5FE000FF3A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100475628CCC5FE000FF3A0 /* User.swift */; };
+		A131164928DCBFA500F54BE7 /* MassageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131164828DCBFA400F54BE7 /* MassageViewController.swift */; };
+		A131164B28DCC9B500F54BE7 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131164A28DCC9B500F54BE7 /* ChatRoom.swift */; };
+		A131164D28DF4FA000F54BE7 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A131164C28DF4FA000F54BE7 /* ChatManager.swift */; };
 		A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */; };
 		A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */; };
 		A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */; };
@@ -44,6 +47,9 @@
 		5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkyTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthentication.swift; sourceTree = "<group>"; };
 		A100475628CCC5FE000FF3A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A131164828DCBFA400F54BE7 /* MassageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassageViewController.swift; sourceTree = "<group>"; };
+		A131164A28DCC9B500F54BE7 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		A131164C28DF4FA000F54BE7 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		A132CE6728CF7B78007D8DBA /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		A132CE6928CFD7F9007D8DBA /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
@@ -103,6 +109,14 @@
 				21F14B2F2916ABF614F666E0 /* Pods-SkyTalk.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A131164728DCBF7800F54BE7 /* Massage */ = {
+			isa = PBXGroup;
+			children = (
+				A131164828DCBFA400F54BE7 /* MassageViewController.swift */,
+			);
+			path = Massage;
 			sourceTree = "<group>";
 		};
 		A132CE6628CF7AC3007D8DBA /* LocalDatabaseManager */ = {
@@ -209,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				A100475628CCC5FE000FF3A0 /* User.swift */,
+				A131164A28DCC9B500F54BE7 /* ChatRoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -216,6 +231,7 @@
 		A190E03928CA36E20023D115 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				A131164728DCBF7800F54BE7 /* Massage */,
 				A1D23D6A28D53D0A0085300D /* EditProfile */,
 				A190E04A28CA6AA70023D115 /* Home */,
 				A14803AF28C8B04900FF9A76 /* Login */,
@@ -231,6 +247,7 @@
 				A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */,
 				A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */,
 				A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */,
+				A131164C28DF4FA000F54BE7 /* ChatManager.swift */,
 			);
 			path = FirebaseManager;
 			sourceTree = "<group>";
@@ -392,13 +409,16 @@
 				A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
+				A131164928DCBFA500F54BE7 /* MassageViewController.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
 				A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */,
+				A131164B28DCC9B500F54BE7 /* ChatRoom.swift in Sources */,
 				A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */,
 				A148039C28C8AF2200FF9A76 /* AppDelegate.swift in Sources */,
 				A148039E28C8AF2200FF9A76 /* SceneDelegate.swift in Sources */,
 				A100475728CCC5FE000FF3A0 /* User.swift in Sources */,
 				A14803B628C8BAD100FF9A76 /* InitialViewController.swift in Sources */,
+				A131164D28DF4FA000F54BE7 /* ChatManager.swift in Sources */,
 				A1BE951228DA042A0036C03C /* UsersChatsTableViewController.swift in Sources */,
 				A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */,
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,

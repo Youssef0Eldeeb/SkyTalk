@@ -109,7 +109,7 @@ extension EditProfileTableViewController: UIImagePickerControllerDelegate, UINav
 extension EditProfileTableViewController{
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : 30
+        return section == 0 || section == 1 ? 0.0 : 30.0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

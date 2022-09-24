@@ -10,6 +10,7 @@ import UIKit
 class UsersChatsTableViewController: UITableViewController{
     
     var allUser: [User] = []
+    var shownUser: [User] = []
     var filteredUser: [User] = []
     let currentUser = FirebaseAuthentication.shared.currentUser
     
@@ -17,14 +18,12 @@ class UsersChatsTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        allUser = [
-            .init(name: "Ahmed Gumma", email: "", status: ""),
-            .init(name: "Hossam Khaled", email: "", status: ""),
-            .init(name: "Mostafa Ali", email: "", status: ""),
-            .init(name: "youssef Mossad", email: "", status: "")
-        ]
+        
+        downloadUsers()
         
         setupSearchBar()
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
     }
     
     private func setupSearchBar(){
@@ -36,24 +35,51 @@ class UsersChatsTableViewController: UITableViewController{
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
     }
+    private func downloadUsers(){
+        FirestoreManager.shared.downlaodAllUsersFromFireStore { allUsers in
+            self.allUser = allUsers
+        }
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filteredUser.count : allUser.count
+        return searchController.isActive ? filteredUser.count : shownUser.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SingleUserTableViewCell
-        let user = searchController.isActive ? filteredUser[indexPath.row] : allUser[indexPath.row]
+        let user = searchController.isActive ? filteredUser[indexPath.row] : shownUser[indexPath.row]
         cell.configureCell(user: user)
         
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if searchController.isActive{
+            // append selected chat to shownUser Array
+            if  !shownUser.contains(filteredUser[indexPath.row]){
+                shownUser.append(filteredUser[indexPath.row])
+            }
+            
+            // open selected chat
+            print("open selected chat")
+            let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: filteredUser[indexPath.row])
+        }else{
+            // open selected chat
+            print("open selected chat ")
+            let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: shownUser[indexPath.row])
+        }
+    }
+    private func goToChatPage(){
+        
+    }
     
 }
 
+// MARK: - Extension for SearchResultsUpdating
 
 extension UsersChatsTableViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController){
         print(searchController.searchBar.text!.lowercased())
         
@@ -63,4 +89,13 @@ extension UsersChatsTableViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
     
+}
+// MARK: - extension for scroll view delegate
+extension UsersChatsTableViewController{
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.refreshControl!.isRefreshing{
+            self.downloadUsers()
+            self.refreshControl!.endRefreshing()
+        }
+    }
 }

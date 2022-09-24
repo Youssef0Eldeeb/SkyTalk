@@ -8,11 +8,15 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct User: Codable{
+struct User: Codable, Equatable{
     var id: String = ""
     var pushId: String = ""
     var imageLink: String = ""
     var name, email, status: String
+    
+    static func == (lhs: User, rhs: User) -> Bool{
+        lhs.id == rhs.id
+    }
 }
 
 struct UserAuth{
