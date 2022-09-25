@@ -21,18 +21,10 @@ class SingleUserTableViewCell: UITableViewCell {
         // Initialization code
         unreadCounterView.layer.cornerRadius = unreadCounterView.frame.width / 2
     }
-    func configureCell(user: User){
-        userName.text = user.name
-        if user.imageLink != ""{
-            FileStorageManager.downloadImage(imageUrl: user.imageLink) { image in
-                self.userImage.image = image
-            }
-        }
-    }
     func configure(chatRoom: ChatRoom){
         userName.text = chatRoom.receiverName
         lastMassage.text = chatRoom.lastMessage
-        dateOfLastMsg.text = "\(chatRoom.date)"
+        dateOfLastMsg.text = timeElapsed(chatRoom.date ?? Date())
         
         if chatRoom.unReadCounter != 0{
             self.unreadCounterLabel.text = "\(chatRoom.unReadCounter)"
@@ -49,10 +41,27 @@ class SingleUserTableViewCell: UITableViewCell {
             self.userImage.image = UIImage(systemName: "person.crop.circle.fill")?.withTintColor(.systemGray2)
         }
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func timeElapsed(_ date: Date) -> String{
+        let seconds = Date().timeIntervalSince(date)
+        var elapsed = ""
+        if seconds < 60 {
+            elapsed = "Just now"
+        }
+        else if seconds < 60 * 60 {
+            let minutes = Int(seconds/60)
+            let minText = minutes > 1 ? "mins" : "min"
+            elapsed = "\(minutes) \(minText)"
+        }
+        else if seconds < 24 * 60 * 60 {
+            let hours = Int(seconds / (60*60))
+            let hourText = hours > 1 ? "hours" : "hour"
+            elapsed = "\(hours) \(hourText)"
+        }
+        else {
+            elapsed = "\(date.longDate())"
+        }
+        return elapsed
     }
 
 }

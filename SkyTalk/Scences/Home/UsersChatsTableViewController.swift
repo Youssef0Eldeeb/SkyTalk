@@ -9,6 +9,9 @@ import UIKit
 
 class UsersChatsTableViewController: UITableViewController{
     
+    var allChatRooms: [ChatRoom] = []
+    var filterChatRooms: [ChatRoom] = []
+    
     var allUser: [User] = []
     var shownUser: [User] = []
     var filteredUser: [User] = []
@@ -19,11 +22,12 @@ class UsersChatsTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadUsers()
+        downloadChatRooms()
         
         setupSearchBar()
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
+        
     }
     
     private func setupSearchBar(){
@@ -35,21 +39,24 @@ class UsersChatsTableViewController: UITableViewController{
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
     }
-    private func downloadUsers(){
-        FirestoreManager.shared.downlaodAllUsersFromFireStore { allUsers in
-            self.allUser = allUsers
+    private func downloadChatRooms(){
+        ChatManager.shared.downloadAllChatRooms { allChatRooms in
+            self.allChatRooms = allChatRooms
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filteredUser.count : shownUser.count
+        return searchController.isActive ? filterChatRooms.count : allChatRooms.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SingleUserTableViewCell
-        let user = searchController.isActive ? filteredUser[indexPath.row] : shownUser[indexPath.row]
-        cell.configureCell(user: user)
+        let chatRoom = searchController.isActive ? filterChatRooms[indexPath.row] : allChatRooms[indexPath.row]
+        cell.configure(chatRoom: chatRoom)
         
         return cell
     }
@@ -94,7 +101,7 @@ extension UsersChatsTableViewController: UISearchResultsUpdating {
 extension UsersChatsTableViewController{
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if self.refreshControl!.isRefreshing{
-            self.downloadUsers()
+            self.downloadChatRooms()
             self.refreshControl!.endRefreshing()
         }
     }
