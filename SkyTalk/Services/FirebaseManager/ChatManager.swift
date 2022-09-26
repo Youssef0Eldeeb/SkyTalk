@@ -69,7 +69,7 @@ class ChatManager{
         
     }
     
-    func downloadAllChatRooms(completion: @escaping (_ allChatRooms: [ChatRoom]) -> (Void)){
+    func downloadChatRooms(completion: @escaping (_ allChatRooms: [ChatRoom]) -> (Void)){
         FirestoreManager.shared.FirestorReference(.Chat).whereField(senderIdKey, isEqualTo: currentId).addSnapshotListener { querySnapshot, error in
             var chatRooms: [ChatRoom] = []
             guard let documents = querySnapshot?.documents else {return}
@@ -85,6 +85,24 @@ class ChatManager{
             completion(chatRooms)
         }
         
+    }
+    
+    func downloadAllFBChatRooms(completion: @escaping (_ allChatRooms: [ChatRoom]) -> (Void)){
+        FirestoreManager.shared.FirestorReference(.Chat).whereField(senderIdKey, isEqualTo: currentId).addSnapshotListener { querySnapshot, error in
+            var chatRooms: [ChatRoom] = []
+            guard let documents = querySnapshot?.documents else {return}
+            let allChatRoom = documents.compactMap { snapshot -> ChatRoom? in
+                return try? snapshot.data(as: ChatRoom.self)
+            }
+            for chatRoom in allChatRoom{
+                chatRooms.append(chatRoom)
+            }
+            completion(chatRooms)
+        }
+        
+    }
+    func deletChatRoom(_ chatRoom: ChatRoom){
+        FirestoreManager.shared.FirestorReference(.Chat).document(chatRoom.id).delete()
     }
     
 }

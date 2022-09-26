@@ -71,11 +71,6 @@
                                                 <constraint firstAttribute="width" constant="60" id="bXq-p5-MFR"/>
                                                 <constraint firstAttribute="height" constant="60" id="kBf-hX-UwP"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRedius">
-                                                    <real key="value" value="30"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bOf-VY-RKA">
                                             <rect key="frame" x="90" y="10" width="304" height="60"/>

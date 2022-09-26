@@ -20,11 +20,30 @@ class SingleUserTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         unreadCounterView.layer.cornerRadius = unreadCounterView.frame.width / 2
+        userImage.layer.cornerRadius = userImage.frame.width / 2
     }
-    func configure(chatRoom: ChatRoom){
+    func configureUser(user: User){
+        userName.text = user.name
+//        lastMassage.isHidden = true
+//        dateOfLastMsg.isHidden = true
+//        unreadCounterView.isHidden = true
+        if user.imageLink != ""{
+            FileStorageManager.downloadImage(imageUrl: user.imageLink) { image in
+                self.userImage.image = image
+            }
+        }else{
+            self.userImage.image = UIImage(systemName: "person.crop.circle.fill")?.withTintColor(.systemGray2)
+        }
+    }
+    
+    func configureChatRoom(chatRoom: ChatRoom){
+//        lastMassage.isHidden = false
+//        dateOfLastMsg.isHidden = false
+//        unreadCounterView.isHidden = false
         userName.text = chatRoom.receiverName
         lastMassage.text = chatRoom.lastMessage
         dateOfLastMsg.text = timeElapsed(chatRoom.date ?? Date())
+        
         
         if chatRoom.unReadCounter != 0{
             self.unreadCounterLabel.text = "\(chatRoom.unReadCounter)"

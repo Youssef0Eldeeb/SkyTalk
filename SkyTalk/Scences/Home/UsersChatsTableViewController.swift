@@ -9,11 +9,10 @@ import UIKit
 
 class UsersChatsTableViewController: UITableViewController{
     
-    var allChatRooms: [ChatRoom] = []
+    var allShownChatRooms: [ChatRoom] = []
     var filterChatRooms: [ChatRoom] = []
     
     var allUser: [User] = []
-    var shownUser: [User] = []
     var filteredUser: [User] = []
     let currentUser = FirebaseAuthentication.shared.currentUser
     
@@ -28,6 +27,7 @@ class UsersChatsTableViewController: UITableViewController{
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
         
+        downloadAllUsers()
     }
     
     private func setupSearchBar(){
@@ -38,54 +38,74 @@ class UsersChatsTableViewController: UITableViewController{
         searchController.searchBar.placeholder = "Search Users"
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
     }
     private func downloadChatRooms(){
-        ChatManager.shared.downloadAllChatRooms { allChatRooms in
-            self.allChatRooms = allChatRooms
+        ChatManager.shared.downloadChatRooms { allChatRooms in
+            self.allShownChatRooms = allChatRooms
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    private func downloadAllUsers(){
+        FirestoreManager.shared.downlaodAllUsersFromFireStore { allUsers in
+            self.allUser = allUsers
         }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.isActive ? filterChatRooms.count : allChatRooms.count
+        return searchController.isActive ? filteredUser.count : allShownChatRooms.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SingleUserTableViewCell
-        let chatRoom = searchController.isActive ? filterChatRooms[indexPath.row] : allChatRooms[indexPath.row]
-        cell.configure(chatRoom: chatRoom)
-        
+        if searchController.isActive {
+            let user = filteredUser[indexPath.row]
+            cell.configureUser(user: user)
+        }else{
+            let chatRoom = allShownChatRooms[indexPath.row]
+            cell.configureChatRoom(chatRoom: chatRoom)
+        }
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if searchController.isActive{
-            // append selected chat to shownUser Array
-            if  !shownUser.contains(filteredUser[indexPath.row]){
-                shownUser.append(filteredUser[indexPath.row])
-            }
-            
-            // open selected chat
-            print("open selected chat")
-            let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: filteredUser[indexPath.row])
-        }else{
-            // open selected chat
-            print("open selected chat ")
-            let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: shownUser[indexPath.row])
-        }
-    }
-    private func goToChatPage(){
         
+        if searchController.isActive {
+            let selectedUser = filteredUser[indexPath.row]
+            let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: selectedUser)
+            print("start chat")
+        }else{
+            print("open chat")
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if !searchController.isActive {
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let chatRoom = allShownChatRooms[indexPath.row]
+            ChatManager.shared.deletChatRoom(chatRoom)
+            allShownChatRooms.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
 }
 
 // MARK: - Extension for SearchResultsUpdating
 
-extension UsersChatsTableViewController: UISearchResultsUpdating {
+extension UsersChatsTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController){
         print(searchController.searchBar.text!.lowercased())
@@ -94,6 +114,9 @@ extension UsersChatsTableViewController: UISearchResultsUpdating {
             return user.name.lowercased().contains(searchController.searchBar.text!.lowercased())
         })
         tableView.reloadData()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("cancel")
     }
     
 }
