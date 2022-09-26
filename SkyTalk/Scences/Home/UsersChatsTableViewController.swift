@@ -79,10 +79,20 @@ class UsersChatsTableViewController: UITableViewController{
             let selectedUser = filteredUser[indexPath.row]
             let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: selectedUser)
             print("start chat")
+            goToMessagePage(user: selectedUser, chatId: chatId)
         }else{
             print("open chat")
+            goToMessagePage(chatRoom: allShownChatRooms[indexPath.row])
         }
         
+    }
+    private func goToMessagePage(chatRoom: ChatRoom){
+        let privateMsgView = MassageViewController(chatId: chatRoom.chatRoomId, resipientId: chatRoom.receiverId, recipientName: chatRoom.receiverName)
+        navigationController?.pushViewController(privateMsgView, animated: true)
+    }
+    private func goToMessagePage(user: User, chatId: String){
+        let privateMsgView = MassageViewController(chatId: chatId, resipientId: user.id, recipientName: user.name)
+        navigationController?.pushViewController(privateMsgView, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
