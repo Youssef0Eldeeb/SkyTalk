@@ -87,6 +87,7 @@ class UsersChatsTableViewController: UITableViewController{
         
     }
     private func goToMessagePage(chatRoom: ChatRoom){
+        ChatManager.shared.restartChat(chatRoomId: chatRoom.chatRoomId, membersIds: chatRoom.memberId)
         let privateMsgView = MassageViewController(chatId: chatRoom.chatRoomId, resipientId: chatRoom.receiverId, recipientName: chatRoom.receiverName)
         navigationController?.pushViewController(privateMsgView, animated: true)
     }

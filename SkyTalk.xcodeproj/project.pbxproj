@@ -32,6 +32,14 @@
 		A14803C928C9372C00FF9A76 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */; };
 		A148426B28D55A25004E47B5 /* Status.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A148426A28D55A25004E47B5 /* Status.storyboard */; };
 		A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148426C28D55A38004E47B5 /* StatusViewController.swift */; };
+		A14895CA28E3474F0045A764 /* MSGVC+MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895C928E3474F0045A764 /* MSGVC+MessageCellDelegate.swift */; };
+		A14895CC28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895CB28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift */; };
+		A14895CE28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895CD28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift */; };
+		A14895D028E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895CF28E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift */; };
+		A14895D228E3485C0045A764 /* MSGVC+MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895D128E3485C0045A764 /* MSGVC+MessagesDataSource.swift */; };
+		A14895D428E34CF10045A764 /* MKSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895D328E34CF10045A764 /* MKSender.swift */; };
+		A14895D628E34ECB0045A764 /* MkMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14895D528E34ECB0045A764 /* MkMessage.swift */; };
+		A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
 		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
 		A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */; };
@@ -73,6 +81,14 @@
 		A14803C828C9372C00FF9A76 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A148426A28D55A25004E47B5 /* Status.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Status.storyboard; sourceTree = "<group>"; };
 		A148426C28D55A38004E47B5 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		A14895C928E3474F0045A764 /* MSGVC+MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSGVC+MessageCellDelegate.swift"; sourceTree = "<group>"; };
+		A14895CB28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSGVC+MessagesDisplayDelegate.swift"; sourceTree = "<group>"; };
+		A14895CD28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSGVC+InputBarAccessoryViewDelegate.swift"; sourceTree = "<group>"; };
+		A14895CF28E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSGVC+MessagesLayoutDelegate.swift"; sourceTree = "<group>"; };
+		A14895D128E3485C0045A764 /* MSGVC+MessagesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSGVC+MessagesDataSource.swift"; sourceTree = "<group>"; };
+		A14895D328E34CF10045A764 /* MKSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKSender.swift; sourceTree = "<group>"; };
+		A14895D528E34ECB0045A764 /* MkMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MkMessage.swift; sourceTree = "<group>"; };
+		A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMessage.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
 		A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDocumentManager.swift; sourceTree = "<group>"; };
@@ -117,6 +133,11 @@
 			isa = PBXGroup;
 			children = (
 				A131164828DCBFA400F54BE7 /* MassageViewController.swift */,
+				A14895D128E3485C0045A764 /* MSGVC+MessagesDataSource.swift */,
+				A14895C928E3474F0045A764 /* MSGVC+MessageCellDelegate.swift */,
+				A14895CB28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift */,
+				A14895CF28E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift */,
+				A14895CD28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift */,
 			);
 			path = Massage;
 			sourceTree = "<group>";
@@ -227,6 +248,9 @@
 			children = (
 				A100475628CCC5FE000FF3A0 /* User.swift */,
 				A131164A28DCC9B500F54BE7 /* ChatRoom.swift */,
+				A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */,
+				A14895D328E34CF10045A764 /* MKSender.swift */,
+				A14895D528E34ECB0045A764 /* MkMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,13 +431,17 @@
 			files = (
 				A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */,
 				A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */,
+				A14895CC28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift in Sources */,
 				A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */,
+				A14895D428E34CF10045A764 /* MKSender.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
 				A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */,
+				A14895D628E34ECB0045A764 /* MkMessage.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
 				A131164928DCBFA500F54BE7 /* MassageViewController.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
+				A14895CA28E3474F0045A764 /* MSGVC+MessageCellDelegate.swift in Sources */,
 				A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */,
 				A131164B28DCC9B500F54BE7 /* ChatRoom.swift in Sources */,
 				A132CE6828CF7B78007D8DBA /* UserDefaultManager.swift in Sources */,
@@ -424,10 +452,14 @@
 				A14803B628C8BAD100FF9A76 /* InitialViewController.swift in Sources */,
 				A131164D28DF4FA000F54BE7 /* ChatManager.swift in Sources */,
 				A1BE951228DA042A0036C03C /* UsersChatsTableViewController.swift in Sources */,
+				A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */,
+				A14895D028E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift in Sources */,
+				A14895D228E3485C0045A764 /* MSGVC+MessagesDataSource.swift in Sources */,
 				A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */,
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,
 				A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */,
 				A14803C028C8C7D100FF9A76 /* UiView+.swift in Sources */,
+				A14895CE28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift in Sources */,
 				A14803C228C8C8E100FF9A76 /* UIViewController+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,6 +26,14 @@ class ChatManager{
         return chatRoomId
     }
     
+    func restartChat(chatRoomId: String, membersIds: [String]){
+        FirestoreManager.shared.downloadUsersFromFBWithID(usersId: membersIds) { allUsers in
+            if allUsers.count > 0 {
+                self.createChatRoom(chatRoomId: chatRoomId, users: allUsers)
+            }
+        }
+    }
+    
     func createChatRoom(chatRoomId: String, users: [User]){
         var usersToCreatChat: [String] = []
         for user in users {

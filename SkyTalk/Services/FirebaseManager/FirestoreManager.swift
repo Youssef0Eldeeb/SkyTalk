@@ -61,6 +61,21 @@ class FirestoreManager{
         }
         
     }
+    func downloadUsersFromFBWithID(usersId: [String], completion: @escaping (_ allUsers: [User]) -> (Void)){
+        var count = 0
+        var usersArray: [User] = []
+        for userId in usersId{
+            FirestorReference(.User).document(userId).getDocument { querySnapshot, error in
+                guard let document = querySnapshot else {return}
+                let user = try? document.data(as: User.self)
+                usersArray.append(user!)
+                count += 1
+                if count == usersId.count{
+                    completion(usersArray)
+                }
+            }
+        }
+    }
     
 }
 
