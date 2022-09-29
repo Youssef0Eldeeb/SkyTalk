@@ -64,7 +64,7 @@ class MassageViewController: MessagesViewController {
         messageInputBar.setStackViewItems([attachedButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 35, animated: false)
         
-        updateMicButtonStatus(show: true)
+        updateMicButtonStatus(show: false)
 //        messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground

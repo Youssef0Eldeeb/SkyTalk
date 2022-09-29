@@ -85,4 +85,5 @@ class FirestoreManager{
 enum FCollectionRefernce: String{
     case User
     case Chat
+    case Message
 }
