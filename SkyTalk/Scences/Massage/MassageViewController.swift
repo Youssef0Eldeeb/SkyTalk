@@ -8,6 +8,8 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import Gallery
+import RealmSwift
 
 class MassageViewController: MessagesViewController {
     
@@ -17,7 +19,9 @@ class MassageViewController: MessagesViewController {
     let refreshController = UIRefreshControl()
     let micButton = InputBarButtonItem()
     let currentUser = MKSender(senderId: FirebaseAuthentication.shared.currntId, displayName: FirebaseAuthentication.shared.currentUser!.name)
-    let mkMessage: [MkMessage] = []
+    var mkMessages: [MkMessage] = []
+    var allLocalMessages: Results<LocalMessage>!
+    let realm = try! Realm()
     
     init(chatId: String, resipientId: String, recipientName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +39,9 @@ class MassageViewController: MessagesViewController {
         super.viewDidLoad()
         configureMessageCollectionView()
         configureMessageInputBar()
+        
+        loadMessages()
+        
     }
     
     private func configureMessageCollectionView(){
@@ -79,4 +86,29 @@ class MassageViewController: MessagesViewController {
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
         }
     }
+    func send(text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0){
+        Outgoing().sendMessage(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [FirebaseAuthentication.shared.currntId, recipientId])
+        
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+    
+}
+extension MassageViewController{
+    private func loadMessages(){
+        let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
+        allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: MSGType.date.rawValue)
+        
+        insertMKMessages()
+    }
+    private func insertMKMessage(localMessage: LocalMessage){
+        let incoming = Incoming(messageViewController: self)
+        let mkMessage = incoming.createMKMessage(localMessage: localMessage)
+        self.mkMessages.append(mkMessage)
+    }
+    private func insertMKMessages(){
+        for localMessage in allLocalMessages{
+            insertMKMessage(localMessage: localMessage)
+        }
+    }
+    
 }

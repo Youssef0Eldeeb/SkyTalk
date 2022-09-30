@@ -9,6 +9,16 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
+
+enum MSGType: String{
+    case text
+    case photo
+    case video
+    case audio
+    case location
+    case date
+}
+
 class MessageManager {
     
     static let shared = MessageManager()

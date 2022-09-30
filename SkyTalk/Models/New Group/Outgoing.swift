@@ -10,16 +10,6 @@ import FirebaseFirestoreSwift
 import Gallery
 
 
-enum MessageType: String{
-    case text
-    case photo
-    case video
-    case audio
-    case location
-}
-
-
-
 class Outgoing{
     
     public let sendKey = "Sent"
@@ -57,7 +47,7 @@ class Outgoing{
     }
     private func sendText(memberIds: [String], message: LocalMessage, text: String){
         message.message = text
-        message.type = MessageType.text.rawValue
+        message.type = MSGType.text.rawValue
         
         saveMessageToRealm(message: message, memberIds: memberIds)
         saveMessageToFirestor(message: message, memberIds: memberIds)

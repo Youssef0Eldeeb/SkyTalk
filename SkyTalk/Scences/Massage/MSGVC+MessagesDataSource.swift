@@ -15,11 +15,11 @@ extension MassageViewController: MessagesDataSource{
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return mkMessage[indexPath.section]
+        return mkMessages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return mkMessage.count
+        return mkMessages.count
     }
     
     

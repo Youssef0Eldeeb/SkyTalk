@@ -17,7 +17,9 @@ extension MassageViewController: InputBarAccessoryViewDelegate{
     }
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        print("sending----", text)
+        
+        send(text: text, photo: nil, video: nil, audio: nil, location: nil)
+        
         messageInputBar.inputTextView.text = ""
         messageInputBar.invalidatePlugins()
     }
