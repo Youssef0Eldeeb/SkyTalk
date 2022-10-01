@@ -59,7 +59,7 @@ class Outgoing{
     }
     private func saveMessageToFirestor(message: LocalMessage, memberIds: [String]){
         for memberId in memberIds {
-            MessageManager.shared.addMessage(message, memberId: memberId)
+            MessageManager.shared.addMessageToFirestore(message, memberId: memberId)
         }
     }
     

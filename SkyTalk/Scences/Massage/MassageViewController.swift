@@ -22,6 +22,7 @@ class MassageViewController: MessagesViewController {
     var mkMessages: [MkMessage] = []
     var allLocalMessages: Results<LocalMessage>!
     let realm = try! Realm()
+    var notificationToken: NotificationToken?
     
     init(chatId: String, resipientId: String, recipientName: String) {
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +42,7 @@ class MassageViewController: MessagesViewController {
         configureMessageInputBar()
         
         loadMessages()
-        
+        listenForNewMessages()
     }
     
     private func configureMessageCollectionView(){
@@ -50,7 +51,7 @@ class MassageViewController: MessagesViewController {
          messagesCollectionView.messagesDisplayDelegate = self
          messagesCollectionView.messagesLayoutDelegate = self
         
-        scrollsToBottomOnKeyboardBeginsEditing = true
+        scrollsToLastItemOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         messagesCollectionView.refreshControl = refreshController
         
@@ -71,12 +72,12 @@ class MassageViewController: MessagesViewController {
         messageInputBar.setStackViewItems([attachedButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 35, animated: false)
         
-        updateMicButtonStatus(show: false)
+        updateMicButtonStatus(show: true)
 //        messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
     }
-    private func updateMicButtonStatus(show: Bool){
+    func updateMicButtonStatus(show: Bool){
         if show{
             messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
@@ -98,7 +99,28 @@ extension MassageViewController{
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
         allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: MSGType.date.rawValue)
         
-        insertMKMessages()
+        if allLocalMessages.isEmpty{
+            getOldMessages()
+        }
+        
+        notificationToken = allLocalMessages.observe({ change in
+            switch change{
+                
+            case .initial(_):
+                self.insertMKMessages()
+                self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToLastItem(animated: true)
+            case .update(_, _,let insertions, _):
+                for index in insertions{
+                    self.insertMKMessage(localMessage: self.allLocalMessages[index])
+                    self.messagesCollectionView.reloadData()
+                    self.messagesCollectionView.scrollToLastItem(animated: true)
+                }
+            case .error(let error):
+                print( error.localizedDescription)
+            }
+        })
+        
     }
     private func insertMKMessage(localMessage: LocalMessage){
         let incoming = Incoming(messageViewController: self)
@@ -109,6 +131,16 @@ extension MassageViewController{
         for localMessage in allLocalMessages{
             insertMKMessage(localMessage: localMessage)
         }
+    }
+    private func getOldMessages(){
+        MessageManager.shared.getOldMessages(userId: FirebaseAuthentication.shared.currntId, chatId: chatId)
+    }
+    private func listenForNewMessages(){
+        MessageManager.shared.listenForNewMessages(userId: FirebaseAuthentication.shared.currntId, chatId: chatId, lastMessageDate: lastMessageDate())
+    }
+    private func lastMessageDate() -> Date  {
+        let lastmessageDate = allLocalMessages.last?.date ?? Date()
+        return Calendar.current.date(byAdding: .second, value: 1, to: lastmessageDate) ?? lastmessageDate
     }
     
 }
