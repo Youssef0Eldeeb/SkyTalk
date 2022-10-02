@@ -88,11 +88,11 @@ class UsersChatsTableViewController: UITableViewController{
     }
     private func goToMessagePage(chatRoom: ChatRoom){
         ChatManager.shared.restartChat(chatRoomId: chatRoom.chatRoomId, membersIds: chatRoom.memberId)
-        let privateMsgView = MassageViewController(chatId: chatRoom.chatRoomId, resipientId: chatRoom.receiverId, recipientName: chatRoom.receiverName)
+        let privateMsgView = MassageViewController(chatId: chatRoom.chatRoomId, resipientId: chatRoom.receiverId, recipientName: chatRoom.receiverName, recipientImageLink: chatRoom.avatarLink)
         navigationController?.pushViewController(privateMsgView, animated: true)
     }
     private func goToMessagePage(user: User, chatId: String){
-        let privateMsgView = MassageViewController(chatId: chatId, resipientId: user.id, recipientName: user.name)
+        let privateMsgView = MassageViewController(chatId: chatId, resipientId: user.id, recipientName: user.name, recipientImageLink: user.imageLink)
         navigationController?.pushViewController(privateMsgView, animated: true)
     }
     

@@ -16,6 +16,7 @@ class MassageViewController: MessagesViewController {
     private var chatId = ""
     private var recipientId = ""
     private var recipientName = ""
+    private var recipientImageLink = ""
     let refreshController = UIRefreshControl()
     let micButton = InputBarButtonItem()
     let currentUser = MKSender(senderId: FirebaseAuthentication.shared.currntId, displayName: FirebaseAuthentication.shared.currentUser!.name)
@@ -24,12 +25,16 @@ class MassageViewController: MessagesViewController {
     let realm = try! Realm()
     var notificationToken: NotificationToken?
     
-    init(chatId: String, resipientId: String, recipientName: String) {
+    var displayingMessagesCount = 0
+    var maxMessageNumber = 0
+    var minMessageNumber = 0
+    
+    init(chatId: String, resipientId: String, recipientName: String, recipientImageLink: String) {
         super.init(nibName: nil, bundle: nil)
         self.chatId = chatId
         self.recipientId = resipientId
         self.recipientName = recipientName
-        
+        self.recipientImageLink = recipientImageLink
     }
     
     required init?(coder: NSCoder) {
@@ -40,9 +45,12 @@ class MassageViewController: MessagesViewController {
         super.viewDidLoad()
         configureMessageCollectionView()
         configureMessageInputBar()
+        configureCustomTitle()
         
         loadMessages()
         listenForNewMessages()
+        
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureMessageCollectionView(){
@@ -77,6 +85,7 @@ class MassageViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
     }
+    
     func updateMicButtonStatus(show: Bool){
         if show{
             messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
@@ -92,8 +101,76 @@ class MassageViewController: MessagesViewController {
         
 //        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshController.isRefreshing{
+            if displayingMessagesCount < allLocalMessages.count{
+                insertMKMessages()
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+        }
+        refreshController.endRefreshing()
+    }
+    
+    // view customize
+    let leftBarButtonView: UIView = {
+        return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    }()
+    
+    let titleLabel: UILabel = {
+        let title = UILabel(frame: CGRect(x: 50, y: 0, width: 100, height: 25))
+        title.textAlignment = .left
+        title.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        title.adjustsFontSizeToFitWidth = true
+        return title
+    }()
+    
+    let subTitleLabel: UILabel = {
+        let title = UILabel(frame: CGRect(x: 50, y: 22, width: 100, height: 20))
+        title.textAlignment = .left
+        title.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        title.tintColor = .darkGray
+        title.adjustsFontSizeToFitWidth = true
+        return title
+    }()
+    
+    let recipientImage: UIImageView = {
+        let imageView = UIImageView(image: UIImage())
+        imageView.frame = CGRect(x: 5, y: 0, width: 40, height: 40)
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private func configureCustomTitle(){
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+        
+        if recipientImageLink != ""{
+            FileStorageManager.downloadImage(imageUrl: recipientImageLink) { image in
+                self.recipientImage.image = image
+            }
+        }else{
+            recipientImage.image = UIImage(systemName: "person.crop.circle.fill")?.withTintColor(.systemGray2)
+        }
+        titleLabel.text = self.recipientName
+        subTitleLabel.text = ""
+        leftBarButtonView.addSubview(titleLabel)
+        leftBarButtonView.addSubview(subTitleLabel)
+        leftBarButtonView.addSubview(recipientImage)
+        
+        let leftBarButtonItemView = UIBarButtonItem(customView: leftBarButtonView)
+        self.navigationItem.leftBarButtonItems?.append(leftBarButtonItemView)
+        
+    }
+    @objc func backButtonPressed(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    func updateTypingIndicator(_ show: Bool){
+        subTitleLabel.text = show ? "Typing..." : ""
+    }
     
 }
+
+
 extension MassageViewController{
     private func loadMessages(){
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
@@ -122,16 +199,44 @@ extension MassageViewController{
         })
         
     }
+    
     private func insertMKMessage(localMessage: LocalMessage){
         let incoming = Incoming(messageViewController: self)
         let mkMessage = incoming.createMKMessage(localMessage: localMessage)
         self.mkMessages.append(mkMessage)
+        displayingMessagesCount += 1
     }
+    
+    private func insertOldMKMessage(localMessage: LocalMessage){
+        let incoming = Incoming(messageViewController: self)
+        let mkMessage = incoming.createMKMessage(localMessage: localMessage)
+        self.mkMessages.append(mkMessage)
+        displayingMessagesCount += 1
+    }
+    
     private func insertMKMessages(){
-        for localMessage in allLocalMessages{
-            insertMKMessage(localMessage: localMessage)
+        maxMessageNumber = allLocalMessages.count - displayingMessagesCount
+        minMessageNumber = maxMessageNumber - 14
+        if minMessageNumber < 0{
+            minMessageNumber = 0
+        }
+        for i in minMessageNumber ..< maxMessageNumber{
+            insertMKMessage(localMessage: allLocalMessages[i])
         }
     }
+    private func insertMoreMKMessages(){
+        maxMessageNumber = allLocalMessages.count  - 1
+        minMessageNumber = maxMessageNumber - 14
+        if minMessageNumber < 0{
+            minMessageNumber = 0
+        }
+        for i in (minMessageNumber ... maxMessageNumber).reversed(){
+            insertOldMKMessage(localMessage: allLocalMessages[i])
+        }
+    }
+    
+    
+    
     private func getOldMessages(){
         MessageManager.shared.getOldMessages(userId: FirebaseAuthentication.shared.currntId, chatId: chatId)
     }

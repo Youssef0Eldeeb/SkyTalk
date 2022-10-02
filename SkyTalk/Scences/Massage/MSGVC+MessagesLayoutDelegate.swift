@@ -13,7 +13,9 @@ extension MassageViewController: MessagesLayoutDelegate {
     
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         if indexPath.section % 3 == 0{
-            
+            if (indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount){
+                return 40
+            }
         }
         return 10
     }
