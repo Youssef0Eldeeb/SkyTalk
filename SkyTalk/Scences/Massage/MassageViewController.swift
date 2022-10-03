@@ -28,6 +28,7 @@ class MassageViewController: MessagesViewController {
     var displayingMessagesCount = 0
     var maxMessageNumber = 0
     var minMessageNumber = 0
+    var typingCounter = 0
     
     init(chatId: String, resipientId: String, recipientName: String, recipientImageLink: String) {
         super.init(nibName: nil, bundle: nil)
@@ -49,6 +50,7 @@ class MassageViewController: MessagesViewController {
         
         loadMessages()
         listenForNewMessages()
+        createTypingObserver()
         
         navigationItem.largeTitleDisplayMode = .never
     }
@@ -166,6 +168,26 @@ class MassageViewController: MessagesViewController {
     }
     func updateTypingIndicator(_ show: Bool){
         subTitleLabel.text = show ? "Typing..." : ""
+    }
+    func startTypingIndicator(){
+        typingCounter += 1
+        TypingManager.shared.saveTypingCounter(typing: true, chatRoomId: chatId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.stopTypingIndicator()
+        }
+    }
+    private func stopTypingIndicator(){
+        typingCounter -= 1
+        if typingCounter == 0 {
+            TypingManager.shared.saveTypingCounter(typing: false, chatRoomId: chatId)
+        }
+    }
+    func createTypingObserver(){
+        TypingManager.shared.createTypingObserver(chatRoomId: chatId) { isTyping in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(isTyping)
+            }
+        }
     }
     
 }

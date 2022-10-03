@@ -44,6 +44,7 @@
 		A148962128E5C4410045A764 /* Outgoing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148962028E5C4410045A764 /* Outgoing.swift */; };
 		A148962528E668770045A764 /* Incoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = A148962428E668770045A764 /* Incoming.swift */; };
 		A154120D28E8F53300760F9F /* MassageViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A154120C28E8F53300760F9F /* MassageViewController+.swift */; };
+		A154120F28EA50FC00760F9F /* TypingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A154120E28EA50FC00760F9F /* TypingManager.swift */; };
 		A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
 		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
@@ -98,6 +99,7 @@
 		A148962028E5C4410045A764 /* Outgoing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Outgoing.swift; path = "../New Group/Outgoing.swift"; sourceTree = "<group>"; };
 		A148962428E668770045A764 /* Incoming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incoming.swift; sourceTree = "<group>"; };
 		A154120C28E8F53300760F9F /* MassageViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MassageViewController+.swift"; sourceTree = "<group>"; };
+		A154120E28EA50FC00760F9F /* TypingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingManager.swift; sourceTree = "<group>"; };
 		A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMessage.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */,
 				A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */,
 				A131164C28DF4FA000F54BE7 /* ChatManager.swift */,
+				A154120E28EA50FC00760F9F /* TypingManager.swift */,
 			);
 			name = FirebaseManager;
 			path = "../New Group/FirebaseManager";
@@ -515,6 +518,7 @@
 				A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */,
 				A14895D028E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift in Sources */,
 				A14895D228E3485C0045A764 /* MSGVC+MessagesDataSource.swift in Sources */,
+				A154120F28EA50FC00760F9F /* TypingManager.swift in Sources */,
 				A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */,
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,
 				A148962128E5C4410045A764 /* Outgoing.swift in Sources */,
@@ -664,9 +668,11 @@
 				DEVELOPMENT_TEAM = KSQAVXV66T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkyTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We want to access your photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Initial;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -693,9 +699,11 @@
 				DEVELOPMENT_TEAM = KSQAVXV66T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SkyTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We want to access your photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Initial;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

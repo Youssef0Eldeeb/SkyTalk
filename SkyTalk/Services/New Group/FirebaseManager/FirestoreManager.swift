@@ -86,4 +86,5 @@ enum FCollectionRefernce: String{
     case User
     case Chat
     case Message
+    case Typing
 }
