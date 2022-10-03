@@ -23,6 +23,10 @@ class MessageManager {
     
     static let shared = MessageManager()
     var newMessageListener: ListenerRegistration!
+    var updatedMessageListener: ListenerRegistration!
+    
+    let statusKey = "status"
+    let readDateKey = "readDate"
     
     private init() {}
     
@@ -69,8 +73,38 @@ class MessageManager {
             
         })
     }
+    
     func removeNewMessageListener(){
         self.newMessageListener.remove()
+        self.updatedMessageListener.remove()
+    }
+    
+    func updateMessgeStatus(_ message: LocalMessage, userId: String){
+        let values = [statusKey: readKey, readDateKey: Date()] as [String: Any]
+        FirestoreManager.shared.FirestorReference(.Message).document(userId).collection(message.chatRoomId).document(message.id).updateData(values)
+    }
+    
+    func listenForReadStatus(_ documentId: String, collectionId: String, completion: @escaping (_ updatedMessage: LocalMessage) -> (Void)){
+        updatedMessageListener = FirestoreManager.shared.FirestorReference(.Message).document(documentId).collection(collectionId).addSnapshotListener({ querySnapshot, error in
+            guard let querySnapshot = querySnapshot else {
+                return
+            }
+            for change in querySnapshot.documentChanges{
+                if change.type == .modified{
+                    let result = Result{
+                        try? change.document.data(as: LocalMessage.self)
+                    }
+                    switch result {
+                    case .success(let success):
+                        if let message = success{
+                            completion(message)
+                        }
+                    case .failure(let failure):
+                        print(failure.localizedDescription)
+                    }
+                }
+            }
+        })
     }
     
 }

@@ -10,10 +10,11 @@ import FirebaseFirestoreSwift
 import Gallery
 
 
+public let sendKey = "✔️"
+public let readKey = "✔️✔️"
+
 class Outgoing{
     
-    public let sendKey = "Sent"
-    public let readKey = "Read"
     
     func sendMessage(chatId: String, text: String?, photo: UIImage?, video: Video?, audio: String?, autioDuration: Float = 0.0, location:String?, memberIds: [String]){
         

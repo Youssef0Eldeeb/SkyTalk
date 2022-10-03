@@ -51,6 +51,7 @@ class MassageViewController: MessagesViewController {
         loadMessages()
         listenForNewMessages()
         createTypingObserver()
+        listenForReadStatusUpdates()
         
         navigationItem.largeTitleDisplayMode = .never
     }
@@ -168,6 +169,13 @@ class MassageViewController: MessagesViewController {
         ChatManager.shared.clearUnreadCounterByChatRoomId(chatRoomId: chatId)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private func markMessageAsReaded(_ localMessage: LocalMessage){
+        if localMessage.senderId != FirebaseAuthentication.shared.currntId{
+            MessageManager.shared.updateMessgeStatus(localMessage, userId: recipientId)
+        }
+    }
+    
     func updateTypingIndicator(_ show: Bool){
         subTitleLabel.text = show ? "Typing..." : ""
     }
@@ -211,11 +219,13 @@ extension MassageViewController{
                 self.insertMKMessages()
                 self.messagesCollectionView.reloadData()
                 self.messagesCollectionView.scrollToLastItem(animated: true)
+                self.messagesCollectionView.scrollToBottom(animated: true)
             case .update(_, _,let insertions, _):
                 for index in insertions{
                     self.insertMKMessage(localMessage: self.allLocalMessages[index])
                     self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToLastItem(animated: true)
+                    self.messagesCollectionView.scrollToLastItem(animated: false)
+                    self.messagesCollectionView.scrollToBottom(animated: false)
                 }
             case .error(let error):
                 print( error.localizedDescription)
@@ -225,6 +235,7 @@ extension MassageViewController{
     }
     
     private func insertMKMessage(localMessage: LocalMessage){
+        markMessageAsReaded(localMessage)
         let incoming = Incoming(messageViewController: self)
         let mkMessage = incoming.createMKMessage(localMessage: localMessage)
         self.mkMessages.append(mkMessage)
@@ -275,5 +286,26 @@ extension MassageViewController{
         TypingManager.shared.removeTypingListener()
         MessageManager.shared.removeNewMessageListener()
     }
+    private func updateReadStatus(_ updatedLocalMessage: LocalMessage){
+        for index in 0 ..< mkMessages.count{
+            let tempMessage = mkMessages[index]
+            if updatedLocalMessage.id == tempMessage.messageId{
+                mkMessages[index].status = updatedLocalMessage.status
+                mkMessages[index].readDate = updatedLocalMessage.readDate
+                
+                RealmManager.shared.save(updatedLocalMessage)
+                
+                if mkMessages[index].status == readKey {
+                    self.messagesCollectionView.reloadData()
+                }
+            }
+        }
+    }
     
+    private func listenForReadStatusUpdates(){
+        MessageManager.shared.listenForReadStatus(FirebaseAuthentication.shared.currntId, collectionId: chatId) { updatedMessage in
+            self.updateReadStatus(updatedMessage)
+        }
+    }
 }
+

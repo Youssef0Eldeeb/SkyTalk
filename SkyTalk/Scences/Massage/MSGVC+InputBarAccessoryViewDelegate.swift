@@ -24,6 +24,7 @@ extension MassageViewController: InputBarAccessoryViewDelegate{
         
         send(text: text, photo: nil, video: nil, audio: nil, location: nil)
         
+        messagesCollectionView.scrollToBottom()
         messagesCollectionView.scrollToLastItem()
         messageInputBar.inputTextView.text = ""
         messageInputBar.invalidatePlugins()

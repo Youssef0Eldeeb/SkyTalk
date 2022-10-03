@@ -25,6 +25,7 @@ extension MassageViewController: MessagesDataSource{
     
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         
+        
         if indexPath.section % 3 == 0 {
             let showLoadMore = (indexPath.section == 0) && (allLocalMessages .count > displayingMessagesCount)
             let sentDate = MessageKitDateFormatter.shared.string(from: message.sentDate)
