@@ -69,5 +69,8 @@ class MessageManager {
             
         })
     }
+    func removeNewMessageListener(){
+        self.newMessageListener.remove()
+    }
     
 }

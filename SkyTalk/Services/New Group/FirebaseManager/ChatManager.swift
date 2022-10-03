@@ -109,8 +109,60 @@ class ChatManager{
         }
         
     }
+    
     func deletChatRoom(_ chatRoom: ChatRoom){
         FirestoreManager.shared.FirestorReference(.Chat).document(chatRoom.id).delete()
     }
+    // clear unread counter and update chatroom
+    private func clearUnreadCounter(chatRoom: ChatRoom){
+        var newChatRoom = chatRoom
+        newChatRoom.unReadCounter = 0
+        self.saveChatRoom(newChatRoom)
+    }
+    
+    func clearUnreadCounterByChatRoomId(chatRoomId: String){
+        FirestoreManager.shared.FirestorReference(.Chat).whereField(senderIdKey, isEqualTo: currentId).getDocuments { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {return}
+            let comingChatRooms = documents.compactMap { query -> ChatRoom? in
+                return try? query.data(as: ChatRoom.self)
+            }
+//            print( "\n" , comingChatRooms.first!.receiverName , "\n")
+//            print( "\n" , comingChatRooms.count , "\n")
+//            print( "\n" , comingChatRooms.last!.receiverName, "\n")
+            if comingChatRooms.count > 0 {
+                let filteredChatRoom = comingChatRooms.filter { chatRoom in
+                    chatRoom.chatRoomId == chatRoomId
+                }
+                print( "\n" , filteredChatRoom.first! , "\n")
+                print( "\n" , filteredChatRoom.last! , "\n")
+                self.clearUnreadCounter(chatRoom: filteredChatRoom.first!)
+            }
+        }
+    }
+    
+    private func updateChatRoomByNewMessage(chatRoom: ChatRoom, lastMessage: String){
+        var tempChatRoom = chatRoom
+        if tempChatRoom.senderId != currentId{
+            tempChatRoom.unReadCounter += 1
+        }
+        tempChatRoom.lastMessage = lastMessage
+        tempChatRoom.date = Date()
+        self.saveChatRoom(tempChatRoom)
+    }
+    
+    func updateChatRooms(chatRoomId: String, lastMessage: String){
+        FirestoreManager.shared.FirestorReference(.Chat).whereField(chatRoomIdKey, isEqualTo: chatRoomId).getDocuments { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {return}
+            let comingChatRooms = documents.compactMap { query -> ChatRoom? in
+                return try? query.data(as: ChatRoom.self)
+            }
+            for chatRoom in comingChatRooms{
+                self.updateChatRoomByNewMessage(chatRoom: chatRoom, lastMessage: lastMessage)
+            }
+        }
+    }
+//    func getReciverUser(chatRoomId: String){
+//
+//    }
     
 }

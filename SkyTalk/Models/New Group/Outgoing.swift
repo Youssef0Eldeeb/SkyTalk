@@ -43,6 +43,7 @@ class Outgoing{
             
         }
         
+        ChatManager.shared.updateChatRooms(chatRoomId: chatId, lastMessage: message.message)
         
     }
     private func sendText(memberIds: [String], message: LocalMessage, text: String){

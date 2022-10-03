@@ -164,6 +164,8 @@ class MassageViewController: MessagesViewController {
         
     }
     @objc func backButtonPressed(){
+        removeListeners()
+        ChatManager.shared.clearUnreadCounterByChatRoomId(chatRoomId: chatId)
         self.navigationController?.popViewController(animated: true)
     }
     func updateTypingIndicator(_ show: Bool){
@@ -268,6 +270,10 @@ extension MassageViewController{
     private func lastMessageDate() -> Date  {
         let lastmessageDate = allLocalMessages.last?.date ?? Date()
         return Calendar.current.date(byAdding: .second, value: 1, to: lastmessageDate) ?? lastmessageDate
+    }
+    private func removeListeners(){
+        TypingManager.shared.removeTypingListener()
+        MessageManager.shared.removeNewMessageListener()
     }
     
 }

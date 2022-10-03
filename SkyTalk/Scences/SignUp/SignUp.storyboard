@@ -92,7 +92,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Ijs-CO-r08"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRedius">
                                                 <real key="value" value="10"/>

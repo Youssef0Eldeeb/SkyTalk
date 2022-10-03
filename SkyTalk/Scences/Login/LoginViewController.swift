@@ -83,4 +83,19 @@ extension LoginViewController: UITextFieldDelegate{
         emailTitle.text = emailTextField.hasText ? "Email" : ""
         passwordTitle.text = passTextField.hasText ? "Password" : ""
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            let email = emailTextField.text!
+            let password = passTextField.text!
+            let userAuth = UserAuth(email: email, password: password)
+            checkLoginAuthentication(userAuth)
+            textField.resignFirstResponder()
+            return true
+        }else{
+            textField.resignFirstResponder()
+            return true
+        }
+    }
+    
 }

@@ -88,4 +88,20 @@ extension SignUpViewController: UITextFieldDelegate{
         emailTitle.text = emailTextField.hasText ? "Email" : ""
         passwordTitle.text = passTextField.hasText ? "Password" : ""
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            let email = emailTextField.text ?? ""
+            let password = passTextField.text ?? ""
+            let firstName = firstNameTextField.text ?? ""
+            let lastName = lastNameTextField.text ?? ""
+            let name = firstName + " " + lastName
+            let userAuth = UserAuth(email: email, password: password, name: name)
+            checkSignupAuthentication(userAuth)
+            return true
+        }else{
+            textField.resignFirstResponder()
+            return true
+        }
+    }
 }

@@ -58,7 +58,7 @@
                                             <constraint firstAttribute="height" constant="40" id="Tym-yT-beU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRedius">
                                                 <real key="value" value="10"/>
