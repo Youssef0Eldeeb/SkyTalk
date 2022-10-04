@@ -13,10 +13,10 @@ import RealmSwift
 
 class MassageViewController: MessagesViewController {
     
-    private var chatId = ""
-    private var recipientId = ""
-    private var recipientName = ""
-    private var recipientImageLink = ""
+    var chatId = ""
+    var recipientId = ""
+    var recipientName = ""
+    var recipientImageLink = ""
     let refreshController = UIRefreshControl()
     let micButton = InputBarButtonItem()
     let currentUser = MKSender(senderId: FirebaseAuthentication.shared.currntId, displayName: FirebaseAuthentication.shared.currentUser!.name)
@@ -29,6 +29,8 @@ class MassageViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     var typingCounter = 0
+    
+    var gallery: GalleryController!
     
     init(chatId: String, resipientId: String, recipientName: String, recipientImageLink: String) {
         super.init(nibName: nil, bundle: nil)
@@ -73,7 +75,7 @@ class MassageViewController: MessagesViewController {
         attachedButton.image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         attachedButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachedButton.onTouchUpInside { item in
-            print("Done Pressed Inside")
+            self.actionAttechedMessage()
         }
         
         
@@ -170,142 +172,4 @@ class MassageViewController: MessagesViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func markMessageAsReaded(_ localMessage: LocalMessage){
-        if localMessage.senderId != FirebaseAuthentication.shared.currntId{
-            MessageManager.shared.updateMessgeStatus(localMessage, userId: recipientId)
-        }
-    }
-    
-    func updateTypingIndicator(_ show: Bool){
-        subTitleLabel.text = show ? "Typing..." : ""
-    }
-    func startTypingIndicator(){
-        typingCounter += 1
-        TypingManager.shared.saveTypingCounter(typing: true, chatRoomId: chatId)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.stopTypingIndicator()
-        }
-    }
-    private func stopTypingIndicator(){
-        typingCounter -= 1
-        if typingCounter == 0 {
-            TypingManager.shared.saveTypingCounter(typing: false, chatRoomId: chatId)
-        }
-    }
-    func createTypingObserver(){
-        TypingManager.shared.createTypingObserver(chatRoomId: chatId) { isTyping in
-            DispatchQueue.main.async {
-                self.updateTypingIndicator(isTyping)
-            }
-        }
-    }
-    
 }
-
-
-extension MassageViewController{
-    private func loadMessages(){
-        let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
-        allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: MSGType.date.rawValue)
-        
-        if allLocalMessages.isEmpty{
-            getOldMessages()
-        }
-        
-        notificationToken = allLocalMessages.observe({ change in
-            switch change{
-                
-            case .initial(_):
-                self.insertMKMessages()
-                self.messagesCollectionView.reloadData()
-                self.messagesCollectionView.scrollToLastItem(animated: true)
-                self.messagesCollectionView.scrollToBottom(animated: true)
-            case .update(_, _,let insertions, _):
-                for index in insertions{
-                    self.insertMKMessage(localMessage: self.allLocalMessages[index])
-                    self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToLastItem(animated: false)
-                    self.messagesCollectionView.scrollToBottom(animated: false)
-                }
-            case .error(let error):
-                print( error.localizedDescription)
-            }
-        })
-        
-    }
-    
-    private func insertMKMessage(localMessage: LocalMessage){
-        markMessageAsReaded(localMessage)
-        let incoming = Incoming(messageViewController: self)
-        let mkMessage = incoming.createMKMessage(localMessage: localMessage)
-        self.mkMessages.append(mkMessage)
-        displayingMessagesCount += 1
-    }
-    
-    private func insertOldMKMessage(localMessage: LocalMessage){
-        let incoming = Incoming(messageViewController: self)
-        let mkMessage = incoming.createMKMessage(localMessage: localMessage)
-        self.mkMessages.append(mkMessage)
-        displayingMessagesCount += 1
-    }
-    
-    private func insertMKMessages(){
-        maxMessageNumber = allLocalMessages.count - displayingMessagesCount
-        minMessageNumber = maxMessageNumber - 14
-        if minMessageNumber < 0{
-            minMessageNumber = 0
-        }
-        for i in minMessageNumber ..< maxMessageNumber{
-            insertMKMessage(localMessage: allLocalMessages[i])
-        }
-    }
-    private func insertMoreMKMessages(){
-        maxMessageNumber = allLocalMessages.count  - 1
-        minMessageNumber = maxMessageNumber - 14
-        if minMessageNumber < 0{
-            minMessageNumber = 0
-        }
-        for i in (minMessageNumber ... maxMessageNumber).reversed(){
-            insertOldMKMessage(localMessage: allLocalMessages[i])
-        }
-    }
-    
-    
-    
-    private func getOldMessages(){
-        MessageManager.shared.getOldMessages(userId: FirebaseAuthentication.shared.currntId, chatId: chatId)
-    }
-    private func listenForNewMessages(){
-        MessageManager.shared.listenForNewMessages(userId: FirebaseAuthentication.shared.currntId, chatId: chatId, lastMessageDate: lastMessageDate())
-    }
-    private func lastMessageDate() -> Date  {
-        let lastmessageDate = allLocalMessages.last?.date ?? Date()
-        return Calendar.current.date(byAdding: .second, value: 1, to: lastmessageDate) ?? lastmessageDate
-    }
-    private func removeListeners(){
-        TypingManager.shared.removeTypingListener()
-        MessageManager.shared.removeNewMessageListener()
-    }
-    private func updateReadStatus(_ updatedLocalMessage: LocalMessage){
-        for index in 0 ..< mkMessages.count{
-            let tempMessage = mkMessages[index]
-            if updatedLocalMessage.id == tempMessage.messageId{
-                mkMessages[index].status = updatedLocalMessage.status
-                mkMessages[index].readDate = updatedLocalMessage.readDate
-                
-                RealmManager.shared.save(updatedLocalMessage)
-                
-                if mkMessages[index].status == readKey {
-                    self.messagesCollectionView.reloadData()
-                }
-            }
-        }
-    }
-    
-    private func listenForReadStatusUpdates(){
-        MessageManager.shared.listenForReadStatus(FirebaseAuthentication.shared.currntId, collectionId: chatId) { updatedMessage in
-            self.updateReadStatus(updatedMessage)
-        }
-    }
-}
-

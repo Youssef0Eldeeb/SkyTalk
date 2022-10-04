@@ -32,7 +32,7 @@ class Outgoing{
             sendText(memberIds: memberIds, message: message, text: text!)
         }
         if photo != nil{
-            
+            sendPhoto(message: message, photo: photo!, memberIds: memberIds)
         }
         if video != nil{
             
@@ -59,10 +59,29 @@ class Outgoing{
     private func saveMessageToRealm(message: LocalMessage, memberIds: [String]){
         RealmManager.shared.save(message)
     }
+    
     private func saveMessageToFirestor(message: LocalMessage, memberIds: [String]){
         for memberId in memberIds {
             MessageManager.shared.addMessageToFirestore(message, memberId: memberId)
         }
     }
+    
+    func sendPhoto(message: LocalMessage, photo: UIImage, memberIds: [String]){
+        message.message = "Photo Message"
+        message.type = MSGType.photo.rawValue
+        
+        let fileName = Date().stringDate()
+        let fileDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)" + "_\(fileName)" + ".png"
+        FileDocumentManager.shared.saveFileLocally(fileData: photo.pngData()! as NSData, fileName: fileName)
+        FileStorageManager.uploadImage(photo, directory: fileDirectory) { documentLink in
+            if documentLink != nil{
+                message.pictureUrl = documentLink!
+                self.saveMessageToRealm(message: message, memberIds: memberIds)
+                self.saveMessageToFirestor(message: message, memberIds: memberIds)
+            }
+        }
+        
+    }
+    
     
 }
