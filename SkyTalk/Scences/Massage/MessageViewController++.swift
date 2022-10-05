@@ -23,7 +23,9 @@ extension MassageViewController{
             self.showImageCallery(camera: false)
         }
         let shareLocation = UIAlertAction(title: "Location", style: .default) { alert in
-            print("show location")
+            if let _ = LocationManager.shared.currentLocation {
+                self.send(text: nil, photo: nil, video: nil, audio: nil, location: MSGType.location.rawValue)
+            }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         

@@ -21,7 +21,13 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access your media</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access your photos</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Used to select photos for image messages</string>
+	<string>$(PRODUCT_NAME) needs access your camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access your location</string>
 </dict>
 </plist>

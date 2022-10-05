@@ -56,6 +56,10 @@
 		A1CE09DE28EC5831006814E2 /* PhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */; };
 		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
 		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
+		A1ED856B28EDA3120088947D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED856A28EDA3120088947D /* LocationManager.swift */; };
+		A1ED856E28EDAB6A0088947D /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED856D28EDAB690088947D /* LocationMessage.swift */; };
+		A1ED857128EDB3E70088947D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857028EDB3E70088947D /* MapViewController.swift */; };
+		A1ED857328EDEDD40088947D /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857228EDEDD40088947D /* MapAnnotation.swift */; };
 		A1FD993A28ECFEF000532736 /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD993928ECFEF000532736 /* VideoMessage.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +118,10 @@
 		A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessage.swift; sourceTree = "<group>"; };
 		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		A1ED856A28EDA3120088947D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A1ED856D28EDAB690088947D /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
+		A1ED857028EDB3E70088947D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A1ED857228EDEDD40088947D /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		A1FD993928ECFEF000532736 /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,6 +295,7 @@
 				A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */,
 				A14895D328E34CF10045A764 /* MKSender.swift */,
 				A14895D528E34ECB0045A764 /* MkMessage.swift */,
+				A1ED857228EDEDD40088947D /* MapAnnotation.swift */,
 				A1FD993C28ECFF3700532736 /* Media Messages */,
 			);
 			path = DataModels;
@@ -316,6 +325,7 @@
 			children = (
 				A148962228E5EFE90045A764 /* DataModels */,
 				A148962328E5F05B0045A764 /* MessageManager */,
+				A1ED856C28EDA31C0088947D /* LocationManager */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +333,7 @@
 		A190E03928CA36E20023D115 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				A1ED856F28EDB3BF0088947D /* MapView */,
 				A131164728DCBF7800F54BE7 /* Massage */,
 				A1D23D6A28D53D0A0085300D /* EditProfile */,
 				A190E04A28CA6AA70023D115 /* Home */,
@@ -375,11 +386,28 @@
 			path = EditProfile;
 			sourceTree = "<group>";
 		};
+		A1ED856C28EDA31C0088947D /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				A1ED856A28EDA3120088947D /* LocationManager.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		A1ED856F28EDB3BF0088947D /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				A1ED857028EDB3E70088947D /* MapViewController.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
 		A1FD993C28ECFF3700532736 /* Media Messages */ = {
 			isa = PBXGroup;
 			children = (
 				A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */,
 				A1FD993928ECFEF000532736 /* VideoMessage.swift */,
+				A1ED856D28EDAB690088947D /* LocationMessage.swift */,
 			);
 			path = "Media Messages";
 			sourceTree = "<group>";
@@ -516,6 +544,8 @@
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
 				A1AE4A7228D6786C000CC52D /* FirebaseStorageManager.swift in Sources */,
 				A14895D628E34ECB0045A764 /* MkMessage.swift in Sources */,
+				A1ED857328EDEDD40088947D /* MapAnnotation.swift in Sources */,
+				A1ED857128EDB3E70088947D /* MapViewController.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A1CE09DE28EC5831006814E2 /* PhotoMessage.swift in Sources */,
 				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
@@ -537,12 +567,14 @@
 				A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */,
 				A14895D028E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift in Sources */,
 				A14895D228E3485C0045A764 /* MSGVC+MessagesDataSource.swift in Sources */,
+				A1ED856E28EDAB6A0088947D /* LocationMessage.swift in Sources */,
 				A154120F28EA50FC00760F9F /* TypingManager.swift in Sources */,
 				A132CE7028D223C6007D8DBA /* ProfileTableViewController.swift in Sources */,
 				A132CE6A28CFD7F9007D8DBA /* UIAlertController+.swift in Sources */,
 				A148962128E5C4410045A764 /* Outgoing.swift in Sources */,
 				A132CE6528CF4FE6007D8DBA /* FirestoreManager.swift in Sources */,
 				A1CE09DC28EBA9C0006814E2 /* MessageViewController+.swift in Sources */,
+				A1ED856B28EDA3120088947D /* LocationManager.swift in Sources */,
 				A14803C028C8C7D100FF9A76 /* UiView+.swift in Sources */,
 				A14895CE28E3478B0045A764 /* MSGVC+InputBarAccessoryViewDelegate.swift in Sources */,
 				A14803C228C8C8E100FF9A76 /* UIViewController+.swift in Sources */,

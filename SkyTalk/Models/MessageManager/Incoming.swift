@@ -7,6 +7,7 @@
 
 import Foundation
 import MessageKit
+import CoreLocation
 
 class Incoming {
     var messageViewController: MessagesViewController
@@ -41,6 +42,12 @@ class Incoming {
                     self.messageViewController.messagesCollectionView.reloadData()
                 }
             }
+        }
+        
+        if localMessage.type == MSGType.location.rawValue{
+            let locationItem = LocationMessage(location: CLLocation(latitude: localMessage.latitude, longitude: localMessage.logitude))
+            mkMessage.kind = MessageKind.location(locationItem)
+            mkMessage.locationItem = locationItem
         }
         
         return mkMessage

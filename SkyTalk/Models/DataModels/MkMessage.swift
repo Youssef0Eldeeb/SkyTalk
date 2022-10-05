@@ -7,6 +7,7 @@
 
 import Foundation
 import MessageKit
+import CoreLocation
 
 class MkMessage: NSObject, MessageType{
     var messageId: String
@@ -21,6 +22,7 @@ class MkMessage: NSObject, MessageType{
     
     var photoItem: PhotoMessage?
     var videoItem: VideoMessage?
+    var locationItem: LocationMessage?
     
     init (message: LocalMessage){
         self.messageId = message.id
@@ -33,16 +35,25 @@ class MkMessage: NSObject, MessageType{
         self.incoming = FirebaseAuthentication.shared.currntId != mkSender.senderId
         
         switch message.type {
+        
         case MSGType.text.rawValue:
             self.kind = MessageKind.text(message.message)
+        
         case MSGType.photo.rawValue:
             let photoItem = PhotoMessage(path: message.pictureUrl)
             self.kind = MessageKind.photo(photoItem)
             self.photoItem = photoItem
+        
         case MSGType.video.rawValue:
             let videoItem = VideoMessage(url: nil)
             self.kind = MessageKind.video(videoItem)
             self.videoItem = videoItem
+        
+        case MSGType.location.rawValue:
+            let locationItem = LocationMessage(location: CLLocation(latitude: message.latitude, longitude: message.logitude))
+            self.kind = MessageKind.location(locationItem)
+            self.locationItem = locationItem
+            
         default:
             print("there is error")
         }

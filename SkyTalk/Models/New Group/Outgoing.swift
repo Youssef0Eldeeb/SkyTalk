@@ -38,7 +38,7 @@ class Outgoing{
             sendVideo(message: message, video: video!, memberIds: memberIds)
         }
         if location != nil{
-            
+            sendLocation(message: message, memberIds: memberIds)
         }
         if audio != nil{
             
@@ -111,5 +111,18 @@ class Outgoing{
             }
         }
     }
+    
+    func sendLocation(message: LocalMessage, memberIds: [String]){
+        let currentLocation = LocationManager.shared.currentLocation
+        
+        message.type = MSGType.location.rawValue
+        message.message = "Location Message"
+        message.latitude = currentLocation?.latitude ?? 0.0
+        message.logitude = currentLocation?.longitude ?? 0.0
+        
+        saveMessageToRealm(message: message, memberIds: memberIds)
+        saveMessageToFirestor(message: message, memberIds: memberIds)
+    }
+    
     
 }
