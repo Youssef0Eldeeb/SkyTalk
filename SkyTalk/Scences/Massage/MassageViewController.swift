@@ -109,7 +109,7 @@ class MassageViewController: MessagesViewController {
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshController.isRefreshing{
             if displayingMessagesCount < allLocalMessages.count{
-                insertMKMessages()
+                insertMoreMKMessages()
                 messagesCollectionView.reloadDataAndKeepOffset()
             }
         }
@@ -150,7 +150,7 @@ class MassageViewController: MessagesViewController {
         self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
         
         if recipientImageLink != ""{
-            FileStorageManager.downloadImage(imageUrl: recipientImageLink) { image in
+            FirebaseStorageManager.downloadImage(imageUrl: recipientImageLink) { image in
                 self.recipientImage.image = image
             }
         }else{

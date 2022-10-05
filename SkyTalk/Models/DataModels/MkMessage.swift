@@ -20,6 +20,7 @@ class MkMessage: NSObject, MessageType{
     var incoming: Bool
     
     var photoItem: PhotoMessage?
+    var videoItem: VideoMessage?
     
     init (message: LocalMessage){
         self.messageId = message.id
@@ -37,6 +38,11 @@ class MkMessage: NSObject, MessageType{
         case MSGType.photo.rawValue:
             let photoItem = PhotoMessage(path: message.pictureUrl)
             self.kind = MessageKind.photo(photoItem)
+            self.photoItem = photoItem
+        case MSGType.video.rawValue:
+            let videoItem = VideoMessage(url: nil)
+            self.kind = MessageKind.video(videoItem)
+            self.videoItem = videoItem
         default:
             print("there is error")
         }

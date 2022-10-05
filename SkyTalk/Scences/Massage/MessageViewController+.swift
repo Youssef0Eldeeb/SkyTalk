@@ -48,7 +48,7 @@ extension MassageViewController{
     func insertOldMKMessage(localMessage: LocalMessage){
         let incoming = Incoming(messageViewController: self)
         let mkMessage = incoming.createMKMessage(localMessage: localMessage)
-        self.mkMessages.append(mkMessage)
+        self.mkMessages.insert(mkMessage, at: 0)
         displayingMessagesCount += 1
     }
     
@@ -63,7 +63,7 @@ extension MassageViewController{
         }
     }
     func insertMoreMKMessages(){
-        maxMessageNumber = allLocalMessages.count  - 1
+        maxMessageNumber = minMessageNumber - 1
         minMessageNumber = maxMessageNumber - 14
         if minMessageNumber < 0{
             minMessageNumber = 0

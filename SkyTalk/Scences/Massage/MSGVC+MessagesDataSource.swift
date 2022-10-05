@@ -27,7 +27,7 @@ extension MassageViewController: MessagesDataSource{
         
         
         if indexPath.section % 14 == 0 {
-            let showLoadMore = (indexPath.section == 0) && (allLocalMessages .count > displayingMessagesCount)
+            let showLoadMore = (indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount)
             let sentDate = MessageKitDateFormatter.shared.string(from: message.sentDate)
             
             

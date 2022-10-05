@@ -60,12 +60,12 @@ extension MassageViewController: GalleryControllerDelegate{
                 self.send(text: nil, photo: image, video: nil, audio: nil, location: nil)
             }
         }
-        
         controller.dismiss(animated: true)
     }
     
     func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
         
+        self.send(text: nil, photo: nil, video: video, audio: nil, location: nil)
         controller.dismiss(animated: true)
     }
     

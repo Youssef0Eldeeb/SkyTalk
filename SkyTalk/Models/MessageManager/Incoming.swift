@@ -23,9 +23,23 @@ class Incoming {
             mkMessage.photoItem = photoItem
             mkMessage.kind = MessageKind.photo(photoItem)
             
-            FileStorageManager.downloadImage(imageUrl: localMessage.pictureUrl) { image in
+            FirebaseStorageManager.downloadImage(imageUrl: localMessage.pictureUrl) { image in
                 mkMessage.photoItem?.image = image
                 self.messageViewController.messagesCollectionView.reloadData()
+            }
+        }
+        
+        if localMessage.type == MSGType.video.rawValue{
+            FirebaseStorageManager.downloadImage(imageUrl: localMessage.pictureUrl) { image in
+                FirebaseStorageManager.downloadVideo(videoUrl: localMessage.videoUrl) { readyToPlay, videoFileName in
+                    let videoLink = URL(fileURLWithPath: FileDocumentManager.shared.getFilePath(fileName: videoFileName))
+                    let videoItem = VideoMessage(url: videoLink)
+                    
+                    mkMessage.videoItem = videoItem
+                    mkMessage.kind = MessageKind.video(videoItem)
+                    mkMessage.videoItem?.image = image
+                    self.messageViewController.messagesCollectionView.reloadData()
+                }
             }
         }
         

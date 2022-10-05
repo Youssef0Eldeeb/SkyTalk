@@ -46,7 +46,7 @@
 		A154120F28EA50FC00760F9F /* TypingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A154120E28EA50FC00760F9F /* TypingManager.swift */; };
 		A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */; };
 		A190E04C28CA6ADC0023D115 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A190E04B28CA6ADC0023D115 /* Home.storyboard */; };
-		A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */; };
+		A1AE4A7228D6786C000CC52D /* FirebaseStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7128D6786C000CC52D /* FirebaseStorageManager.swift */; };
 		A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */; };
 		A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */; };
 		A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BE950F28DA03A90036C03C /* SingleUserTableViewCell.swift */; };
@@ -56,6 +56,7 @@
 		A1CE09DE28EC5831006814E2 /* PhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */; };
 		A1D23D6C28D53D310085300D /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D23D6B28D53D310085300D /* EditProfile.storyboard */; };
 		A1D23D7028D53FD20085300D /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */; };
+		A1FD993A28ECFEF000532736 /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD993928ECFEF000532736 /* VideoMessage.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +104,7 @@
 		A154120E28EA50FC00760F9F /* TypingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingManager.swift; sourceTree = "<group>"; };
 		A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMessage.swift; sourceTree = "<group>"; };
 		A190E04B28CA6ADC0023D115 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageManager.swift; sourceTree = "<group>"; };
+		A1AE4A7128D6786C000CC52D /* FirebaseStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageManager.swift; sourceTree = "<group>"; };
 		A1AE4A7328D737D6000CC52D /* FileDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileDocumentManager.swift; path = "../New Group1/FileDocumentManager.swift"; sourceTree = "<group>"; };
 		A1AE4A7628D76B3B000CC52D /* StatusCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCommunicator.swift; sourceTree = "<group>"; };
 		A1BE950F28DA03A90036C03C /* SingleUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleUserTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessage.swift; sourceTree = "<group>"; };
 		A1D23D6B28D53D310085300D /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A1D23D6F28D53FD20085300D /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
+		A1FD993928ECFEF000532736 /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,7 +287,7 @@
 				A16DF59F28E2830F00C0CFAF /* LocalMessage.swift */,
 				A14895D328E34CF10045A764 /* MKSender.swift */,
 				A14895D528E34ECB0045A764 /* MkMessage.swift */,
-				A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */,
+				A1FD993C28ECFF3700532736 /* Media Messages */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -336,7 +338,7 @@
 			children = (
 				A132CE6428CF4FE6007D8DBA /* FirestoreManager.swift */,
 				A100475428CC10BC000FF3A0 /* FirebaseAuthentication.swift */,
-				A1AE4A7128D6786C000CC52D /* FileStorageManager.swift */,
+				A1AE4A7128D6786C000CC52D /* FirebaseStorageManager.swift */,
 				A131164C28DF4FA000F54BE7 /* ChatManager.swift */,
 				A154120E28EA50FC00760F9F /* TypingManager.swift */,
 			);
@@ -371,6 +373,15 @@
 				A148426928D559F5004E47B5 /* Status */,
 			);
 			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		A1FD993C28ECFF3700532736 /* Media Messages */ = {
+			isa = PBXGroup;
+			children = (
+				A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */,
+				A1FD993928ECFEF000532736 /* VideoMessage.swift */,
+			);
+			path = "Media Messages";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,13 +514,14 @@
 				A1CE09DA28EBA6CA006814E2 /* MessageViewController++.swift in Sources */,
 				A14895D428E34CF10045A764 /* MKSender.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
-				A1AE4A7228D6786C000CC52D /* FileStorageManager.swift in Sources */,
+				A1AE4A7228D6786C000CC52D /* FirebaseStorageManager.swift in Sources */,
 				A14895D628E34ECB0045A764 /* MkMessage.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,
 				A1CE09DE28EC5831006814E2 /* PhotoMessage.swift in Sources */,
 				A1AE4A7728D76B3B000CC52D /* StatusCommunicator.swift in Sources */,
 				A148961C28E5C0ED0045A764 /* MessageManager.swift in Sources */,
 				A131164928DCBFA500F54BE7 /* MassageViewController.swift in Sources */,
+				A1FD993A28ECFEF000532736 /* VideoMessage.swift in Sources */,
 				A148426D28D55A38004E47B5 /* StatusViewController.swift in Sources */,
 				A14895CA28E3474F0045A764 /* MSGVC+MessageCellDelegate.swift in Sources */,
 				A1BE951028DA03A90036C03C /* SingleUserTableViewCell.swift in Sources */,

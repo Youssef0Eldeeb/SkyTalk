@@ -28,7 +28,7 @@ class SingleUserTableViewCell: UITableViewCell {
 //        dateOfLastMsg.isHidden = true
 //        unreadCounterView.isHidden = true
         if user.imageLink != ""{
-            FileStorageManager.downloadImage(imageUrl: user.imageLink) { image in
+            FirebaseStorageManager.downloadImage(imageUrl: user.imageLink) { image in
                 self.userImage.image = image
             }
         }else{
@@ -53,7 +53,7 @@ class SingleUserTableViewCell: UITableViewCell {
         }
         
         if chatRoom.avatarLink != ""{
-            FileStorageManager.downloadImage(imageUrl: chatRoom.avatarLink) { image in
+            FirebaseStorageManager.downloadImage(imageUrl: chatRoom.avatarLink) { image in
                 self.userImage.image = image
             }
         }else{

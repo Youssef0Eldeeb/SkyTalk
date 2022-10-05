@@ -51,7 +51,7 @@ class ProfileTableViewController: UITableViewController {
             
             appVersion.text = "App Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")"
             if user.imageLink != ""{
-                FileStorageManager.downloadImage(imageUrl: user.imageLink) { image in
+                FirebaseStorageManager.downloadImage(imageUrl: user.imageLink) { image in
                     self.image.image = image
                     self.navigatImage = image
                 }

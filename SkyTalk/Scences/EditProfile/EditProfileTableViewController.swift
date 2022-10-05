@@ -56,7 +56,7 @@ class EditProfileTableViewController: UITableViewController {
     }
     private func uploadImage(_ image: UIImage){
         let fileDirectory = "Image/" + "_\(FirebaseAuthentication.shared.currntId)" + ".png"
-        FileStorageManager.uploadImage(image, directory: fileDirectory) { imageLink in
+        FirebaseStorageManager.uploadImage(image, directory: fileDirectory) { imageLink in
             if var user = FirebaseAuthentication.shared.currentUser{
                 user.imageLink = imageLink ?? ""
                 UserDefaultManager.shared.saveUserLocally(user)

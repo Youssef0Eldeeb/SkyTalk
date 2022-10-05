@@ -35,7 +35,7 @@ class Outgoing{
             sendPhoto(message: message, photo: photo!, memberIds: memberIds)
         }
         if video != nil{
-            
+            sendVideo(message: message, video: video!, memberIds: memberIds)
         }
         if location != nil{
             
@@ -73,9 +73,9 @@ class Outgoing{
         let fileName = Date().stringDate()
         let fileDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)" + "_\(fileName)" + ".png"
         FileDocumentManager.shared.saveFileLocally(fileData: photo.pngData()! as NSData, fileName: fileName)
-        FileStorageManager.uploadImage(photo, directory: fileDirectory) { documentLink in
-            if documentLink != nil{
-                message.pictureUrl = documentLink!
+        FirebaseStorageManager.uploadImage(photo, directory: fileDirectory) { imageLink in
+            if imageLink != nil{
+                message.pictureUrl = imageLink!
                 self.saveMessageToRealm(message: message, memberIds: memberIds)
                 self.saveMessageToFirestor(message: message, memberIds: memberIds)
             }
@@ -83,5 +83,33 @@ class Outgoing{
         
     }
     
+    func sendVideo(message: LocalMessage, video: Video, memberIds: [String]){
+        message.message = "Video Message"
+        message.type = MSGType.video.rawValue
+        
+        let fileName = Date().stringDate()
+        let thumbnailDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)" + "_\(fileName)" + ".png"
+        let videoDirectory = "MediaMessages/Video/" + "\(message.chatRoomId)" + "_\(fileName)" + ".mov"
+        
+        let editor = VideoEditor()
+        editor.process(video: video) { video, tempPath in
+            if let tempPath = tempPath {
+                let thumbnail = FirebaseStorageManager.generateVideoThumbnail(url: tempPath)
+                FileDocumentManager.shared.saveFileLocally(fileData: thumbnail.pngData()! as NSData, fileName: fileName)
+                FirebaseStorageManager.uploadImage(thumbnail, directory: thumbnailDirectory) { imageLink in
+                    if imageLink != nil{
+                        let videoData = NSData(contentsOfFile: tempPath.path)
+                        FileDocumentManager.shared.saveFileLocally(fileData: videoData!, fileName: fileName + ".mov")
+                        FirebaseStorageManager.uploadVideo(videoData!, directory: videoDirectory) { videoLink in
+                            message.videoUrl = videoLink ?? ""
+                            message.pictureUrl = imageLink ?? ""
+                            self.saveMessageToRealm(message: message, memberIds: memberIds)
+                            self.saveMessageToFirestor(message: message, memberIds: memberIds)
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 }
