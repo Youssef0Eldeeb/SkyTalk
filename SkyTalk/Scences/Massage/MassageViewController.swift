@@ -31,6 +31,11 @@ class MassageViewController: MessagesViewController {
     var typingCounter = 0
     
     var gallery: GalleryController!
+    var longPressGesture: UILongPressGestureRecognizer!
+    
+    var audioFileName = ""
+    var audioStartTime = Date()
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
     
     init(chatId: String, resipientId: String, recipientName: String, recipientImageLink: String) {
         super.init(nibName: nil, bundle: nil)
@@ -46,6 +51,7 @@ class MassageViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureGestureRocognizer()
         configureMessageCollectionView()
         configureMessageInputBar()
         configureCustomTitle()
@@ -82,6 +88,8 @@ class MassageViewController: MessagesViewController {
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
         
+        micButton.addGestureRecognizer(longPressGesture)
+        
         messageInputBar.setStackViewItems([attachedButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 35, animated: false)
         
@@ -104,7 +112,8 @@ class MassageViewController: MessagesViewController {
     func send(text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0){
         Outgoing().sendMessage(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [FirebaseAuthentication.shared.currntId, recipientId])
         
-//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+//        print("\n" , Realm.Configuration.defaultConfiguration.fileURL! , "\n")
     }
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshController.isRefreshing{
@@ -170,6 +179,32 @@ class MassageViewController: MessagesViewController {
         removeListeners()
         ChatManager.shared.clearUnreadCounterByChatRoomId(chatRoomId: chatId)
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func configureGestureRocognizer(){
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAndSend))
+    }
+    @objc func recordAndSend(){
+        
+        switch longPressGesture.state {
+        case .began:
+            audioFileName = Date().stringDate()
+            audioStartTime = Date()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+            
+            print("Record")
+        case .ended:
+            AudioRecorder.shared.finishRecording()
+            if FileDocumentManager.shared.fileExistsAtPath(path: audioFileName + ".m4a"){
+                let audioDuration = audioStartTime.interval(ofComponent: .second, to: Date())
+                send(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioDuration)
+            }
+            
+            print("Send")
+        @unknown default:
+            print("unknown")
+        }
+        
     }
     
 }

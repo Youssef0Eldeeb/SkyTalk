@@ -60,6 +60,9 @@
 		A1ED856E28EDAB6A0088947D /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED856D28EDAB690088947D /* LocationMessage.swift */; };
 		A1ED857128EDB3E70088947D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857028EDB3E70088947D /* MapViewController.swift */; };
 		A1ED857328EDEDD40088947D /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857228EDEDD40088947D /* MapAnnotation.swift */; };
+		A1ED857528EE39310088947D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857428EE39310088947D /* AudioRecorder.swift */; };
+		A1ED857828EE56510088947D /* AudioMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857728EE56510088947D /* AudioMessage.swift */; };
+		A1ED857A28EE5D320088947D /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857928EE5D320088947D /* BasicAudioController.swift */; };
 		A1FD993A28ECFEF000532736 /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD993928ECFEF000532736 /* VideoMessage.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
@@ -122,6 +125,9 @@
 		A1ED856D28EDAB690088947D /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
 		A1ED857028EDB3E70088947D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A1ED857228EDEDD40088947D /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		A1ED857428EE39310088947D /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		A1ED857728EE56510088947D /* AudioMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessage.swift; sourceTree = "<group>"; };
+		A1ED857928EE5D320088947D /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		A1FD993928ECFEF000532736 /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -326,6 +332,8 @@
 				A148962228E5EFE90045A764 /* DataModels */,
 				A148962328E5F05B0045A764 /* MessageManager */,
 				A1ED856C28EDA31C0088947D /* LocationManager */,
+				A1ED857628EE39DB0088947D /* AudioManager */,
+				A1ED857928EE5D320088947D /* BasicAudioController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,12 +410,21 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
+		A1ED857628EE39DB0088947D /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				A1ED857428EE39310088947D /* AudioRecorder.swift */,
+			);
+			path = AudioManager;
+			sourceTree = "<group>";
+		};
 		A1FD993C28ECFF3700532736 /* Media Messages */ = {
 			isa = PBXGroup;
 			children = (
 				A1CE09DD28EC5831006814E2 /* PhotoMessage.swift */,
 				A1FD993928ECFEF000532736 /* VideoMessage.swift */,
 				A1ED856D28EDAB690088947D /* LocationMessage.swift */,
+				A1ED857728EE56510088947D /* AudioMessage.swift */,
 			);
 			path = "Media Messages";
 			sourceTree = "<group>";
@@ -535,6 +552,7 @@
 			files = (
 				A1AE4A7428D737D6000CC52D /* FileDocumentManager.swift in Sources */,
 				A148962528E668770045A764 /* Incoming.swift in Sources */,
+				A1ED857528EE39310088947D /* AudioRecorder.swift in Sources */,
 				A100475528CC10BC000FF3A0 /* FirebaseAuthentication.swift in Sources */,
 				A148961828E5BEB70045A764 /* RealmManager.swift in Sources */,
 				A14895CC28E3476C0045A764 /* MSGVC+MessagesDisplayDelegate.swift in Sources */,
@@ -542,8 +560,10 @@
 				A1CE09DA28EBA6CA006814E2 /* MessageViewController++.swift in Sources */,
 				A14895D428E34CF10045A764 /* MKSender.swift in Sources */,
 				A14803B328C8B0B200FF9A76 /* LoginViewController.swift in Sources */,
+				A1ED857828EE56510088947D /* AudioMessage.swift in Sources */,
 				A1AE4A7228D6786C000CC52D /* FirebaseStorageManager.swift in Sources */,
 				A14895D628E34ECB0045A764 /* MkMessage.swift in Sources */,
+				A1ED857A28EE5D320088947D /* BasicAudioController.swift in Sources */,
 				A1ED857328EDEDD40088947D /* MapAnnotation.swift in Sources */,
 				A1ED857128EDB3E70088947D /* MapViewController.swift in Sources */,
 				A14803C528C8CF9900FF9A76 /* SignUpViewController.swift in Sources */,

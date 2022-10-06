@@ -50,6 +50,17 @@ class Incoming {
             mkMessage.locationItem = locationItem
         }
         
+        if localMessage.type == MSGType.audio.rawValue{
+            let audioMessage = AudioMessage(duration: Float(localMessage.audioDuration))
+            mkMessage.audioItem = audioMessage
+            mkMessage.kind = MessageKind.audio(audioMessage)
+            FirebaseStorageManager.downloadAudio(audioUrl: localMessage.audioUrl) { audioFileName in
+                let audioURl = URL(fileURLWithPath: FileDocumentManager.shared.getFilePath(fileName: audioFileName))
+                mkMessage.audioItem?.url = audioURl
+            }
+            self.messageViewController.messagesCollectionView.reloadData()
+        }
+        
         return mkMessage
     }
 }

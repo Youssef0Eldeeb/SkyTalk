@@ -54,14 +54,17 @@ class FirebaseStorageManager{
         }else{
             if imageUrl != ""{
                 let documentUrl = URL(string: imageUrl)
-                let data = NSData(contentsOf: documentUrl!)
-                if data != nil{
-                    FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: imageFileName)
-                    DispatchQueue.main.async {
-                        completion(UIImage(data: data! as Data))
+                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+                downloadQueue.async {
+                    let data = NSData(contentsOf: documentUrl!)
+                    if data != nil{
+                        FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: imageFileName)
+                        DispatchQueue.main.async {
+                            completion(UIImage(data: data! as Data))
+                        }
+                    }else{
+                        completion(nil)
                     }
-                }else{
-                    completion(nil)
                 }
             }
         }
@@ -114,6 +117,7 @@ class FirebaseStorageManager{
             ProgressHUD.showProgress(CGFloat(progress))
         }
     }
+    
     class func downloadVideo(videoUrl: String, completion: @escaping (_ readyToPlay: Bool, _ videoFileName: String) -> (Void)){
         let videoFileName = gitAcualFileName(fileUrl: videoUrl) + ".mov"
         if FileDocumentManager.shared.fileExistsAtPath(path: videoFileName){
@@ -121,16 +125,76 @@ class FirebaseStorageManager{
         }else{
             if videoUrl != ""{
                 let documentUrl = URL(string: videoUrl)
-                let data = NSData(contentsOf: documentUrl!)
-                if data != nil{
-                    FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: videoFileName)
-                    DispatchQueue.main.async {
-                        completion(true, videoFileName)
+                let downloadQueue = DispatchQueue(label: "videoDownloadQueue")
+                downloadQueue.async {
+                    let data = NSData(contentsOf: documentUrl!)
+                    if data != nil{
+                        FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: videoFileName)
+                        DispatchQueue.main.async {
+                            completion(true, videoFileName)
+                        }
+                    }else{
+                        print("no document founded in datebase")
                     }
-                }else{
-                    print("no document founded in datebase")
                 }
             }
+        }
+    }
+    
+    class func uploadAudio(_ audioFileName: String, directory: String, completion: @escaping (_ audioLink: String?) -> (Void)){
+        let folderPath = "gs://skytalk-1f580.appspot.com"
+        let storage = Storage.storage()
+        let storageRef = storage.reference(forURL: folderPath).child(directory)
+        let fileName = audioFileName + ".m4a"
+        var task: StorageUploadTask!
+        
+        if FileDocumentManager.shared.fileExistsAtPath(path: fileName){
+            if let audioData = NSData(contentsOfFile: FileDocumentManager.shared.getFilePath(fileName: fileName)){
+                task = storageRef.putData(audioData as Data, completion: { storageMetaData, error in
+                    task.removeAllObservers()
+                    ProgressHUD.dismiss()
+                    if error != nil{
+                        print("Error Uploading audio : " + error!.localizedDescription)
+                    }
+                    storageRef.downloadURL { url, error in
+                        guard let downloadUrl = url else{
+                            completion(nil)
+                            return
+                        }
+                        completion(downloadUrl.absoluteString)
+                    }
+                })
+                task.observe(StorageTaskStatus.progress) { snapshot in
+                    let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
+                    ProgressHUD.showProgress(CGFloat(progress))
+                }
+            }
+        }else{
+            print("Nothing to upload or file does not exist")
+        }
+    }
+    
+    class func downloadAudio(audioUrl: String, completion: @escaping (_ audioFileName: String) -> (Void)){
+        let audioFileName = gitAcualFileName(fileUrl: audioUrl) + ".m4a"
+        if FileDocumentManager.shared.fileExistsAtPath(path: audioFileName){
+            completion(audioFileName)
+        }else{
+            if audioUrl != ""{
+                let documentUrl = URL(string: audioUrl)
+                let downloadQueue = DispatchQueue(label: "audioDownloadQueue")
+                downloadQueue.async {
+                    let data = NSData(contentsOf: documentUrl!)
+                    if data != nil{
+                        FileDocumentManager.shared.saveFileLocally(fileData: data!, fileName: audioFileName)
+                        DispatchQueue.main.async {
+                            completion(audioFileName)
+                        }
+                    }else{
+                        print("no document founded in datebase")
+                    }
+                }
+            }
+                
         }
     }
     

@@ -16,7 +16,7 @@ public let readKey = "✔️✔️"
 class Outgoing{
     
     
-    func sendMessage(chatId: String, text: String?, photo: UIImage?, video: Video?, audio: String?, autioDuration: Float = 0.0, location:String?, memberIds: [String]){
+    func sendMessage(chatId: String, text: String?, photo: UIImage?, video: Video?, audio: String?, audioDuration: Float = 0.0, location:String?, memberIds: [String]){
         
         let currentUser = FirebaseAuthentication.shared.currentUser!
         let message = LocalMessage()
@@ -41,7 +41,7 @@ class Outgoing{
             sendLocation(message: message, memberIds: memberIds)
         }
         if audio != nil{
-            
+            sendAudio(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
         }
         
         ChatManager.shared.updateChatRooms(chatRoomId: chatId, lastMessage: message.message)
@@ -124,5 +124,18 @@ class Outgoing{
         saveMessageToFirestor(message: message, memberIds: memberIds)
     }
     
+    func sendAudio(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String]){
+        message.message = "Audio Message"
+        message.type = MSGType.audio.rawValue
+        let fileDirectory = "MediaMessages/Audio/" + "\(message.chatRoomId)" + "_\(audioFileName)" + ".m4a"
+        FirebaseStorageManager.uploadAudio(audioFileName, directory: fileDirectory) { audioLink in
+            if audioLink != nil{
+                message.audioUrl = audioLink ?? ""
+                message.audioDuration = Double(audioDuration)
+                self.saveMessageToRealm(message: message, memberIds: memberIds)
+                self.saveMessageToFirestor(message: message, memberIds: memberIds)
+            }
+        }
+    }
     
 }
