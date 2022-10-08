@@ -28,10 +28,6 @@ class SignUpViewController: UIViewController {
         setupTextFieldsUI()
     }
     
-    @IBAction func resendVerficationEmailBtn(_ sender: UIButton) {
-        resendVerificationEmail()
-    }
-    
     @IBAction func signUpBtn(_ sender: Any) {
         let email = emailTextField.text ?? ""
         let password = passTextField.text ?? ""
@@ -48,20 +44,13 @@ class SignUpViewController: UIViewController {
                 UIAlertController.showAlert(msg: error.localizedDescription, form: self)
             }
             if error == nil {
-                UIAlertController.showAlert(msg: "Successful sign up", form: self)
+                let controller = VerifySignUPViewController.instantiate(name: .signUp)
+                controller.comingUserAuth = userAuth
+                self.navigationController?.pushViewController(controller, animated: true)
             }
         }
     }
-    
-    private func resendVerificationEmail(){
-        FirebaseAuthentication.shared.resendVerificationEmail(email: emailTextField.text!) { error in
-            if error == nil{
-                UIAlertController.showAlert(msg: "Verification email sent successfully", form: self)
-            }else{
-                UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
-            }
-        }
-    }
+
     
     private func setupTextFieldsUI(){
         firstNameTitle.text = ""

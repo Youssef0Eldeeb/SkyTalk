@@ -16,6 +16,7 @@ class MkMessage: NSObject, MessageType{
     var mkSender: MKSender
     var sender: SenderType {return mkSender}
     var senderInitials: String
+    var senderImageLink: String
     var status: String
     var readDate: Date
     var incoming: Bool
@@ -31,6 +32,7 @@ class MkMessage: NSObject, MessageType{
         self.status = message.status
         self.kind = MessageKind.text(message.message)
         self.senderInitials = message.senderInitials
+        self.senderImageLink = message.senderImageLink
         self.sentDate = message.date
         self.readDate = message.readDate
         self.incoming = FirebaseAuthentication.shared.currntId != mkSender.senderId

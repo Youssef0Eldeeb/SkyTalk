@@ -29,7 +29,11 @@ extension MassageViewController: MessagesLayoutDelegate {
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+//        avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+        FirebaseStorageManager.downloadImage(imageUrl: mkMessages[indexPath.section].senderImageLink) { image in
+            avatarView.set(avatar: Avatar(image: image, initials: self.mkMessages[indexPath.section].senderInitials))
+        }
+        
     }
     
     

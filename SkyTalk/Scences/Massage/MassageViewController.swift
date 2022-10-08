@@ -83,7 +83,7 @@ class MassageViewController: MessagesViewController {
         attachedButton.onTouchUpInside { item in
             self.actionAttechedMessage()
         }
-        
+        messageInputBar.inputTextView.layer.cornerRadius = 18
         
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
@@ -96,7 +96,7 @@ class MassageViewController: MessagesViewController {
         updateMicButtonStatus(show: true)
 //        messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
-        messageInputBar.inputTextView.backgroundColor = .systemBackground
+        messageInputBar.inputTextView.backgroundColor = .systemGray6
     }
     
     func updateMicButtonStatus(show: Bool){

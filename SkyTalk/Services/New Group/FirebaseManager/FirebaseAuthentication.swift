@@ -27,6 +27,11 @@ class FirebaseAuthentication{
     func loginAuth(userAuth: UserAuth, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool)->(Void)){
         Auth.auth().signIn(withEmail: userAuth.email, password: userAuth.password) {authResult, error in
             if error == nil && authResult!.user.isEmailVerified{
+                if authResult?.user != nil {
+                    let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
+                    FirestoreManager.shared.saveUserToFirestore(user)
+                    UserDefaultManager.shared.saveUserLocally(user)
+                }
                 completion(error,true)
                 FirestoreManager.shared.downloadUserFormFirestore(userId: authResult!.user.uid)
             }else {
@@ -38,16 +43,21 @@ class FirebaseAuthentication{
     //Sign Up Authentication
     func signUpAuth(userAuth: UserAuth, completion: @escaping (_ error: Error?)->Void){
         Auth.auth().createUser(withEmail: userAuth.email, password: userAuth.password) { authResult, error in
-            completion(error)
-            if error == nil {
+            if let error = error {
+                completion(error)
+            }else{
                 authResult!.user.sendEmailVerification{ error in
                     completion(error)
                 }
             }
+            
             if authResult?.user != nil {
                 let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
-                FirestoreManager.shared.saveUserToFirestore(user)
-                UserDefaultManager.shared.saveUserLocally(user)
+                if authResult!.user.isEmailVerified{
+                    FirestoreManager.shared.saveUserToFirestore(user)
+                    UserDefaultManager.shared.saveUserLocally(user)
+                }
+                
             }
             
         }

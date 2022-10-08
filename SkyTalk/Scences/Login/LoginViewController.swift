@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }    
+    }
     @IBAction func forgetPasswordBtn(_ sender: UIButton) {
         forgetPassword()
     }

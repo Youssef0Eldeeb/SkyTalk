@@ -15,6 +15,7 @@ class LocalMessage: Object, Codable{
     @objc dynamic var senderName = ""
     @objc dynamic var senderId = ""
     @objc dynamic var senderInitials = ""
+    @objc dynamic var senderImageLink = ""
     @objc dynamic var readDate = Date()
     @objc dynamic var type = ""
     @objc dynamic var status = ""

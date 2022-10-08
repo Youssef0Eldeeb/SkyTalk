@@ -26,19 +26,31 @@ class ProfileTableViewController: UITableViewController {
     }
 
     @IBAction func logOut(_ sender: UIButton) {
-        FirebaseAuthentication.shared.logoutCurrentUser { error in
-            if error == nil{
-                self.goBackToHome()
-            }else{
-                UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
+        let optionsMenu = UIAlertController(title: "You are about to log out!", message: nil, preferredStyle: .alert)
+        let yesOption = UIAlertAction(title: "Yes", style: .default) { alert in
+            FirebaseAuthentication.shared.logoutCurrentUser { error in
+                if error == nil{
+                    self.goBackToInitialPage()
+                }else{
+                    UIAlertController.showAlert(msg: error!.localizedDescription, form: self)
+                }
             }
         }
+        let cancelOption = UIAlertAction(title: "Cancel", style: .cancel)
+        optionsMenu.addAction(yesOption)
+        optionsMenu.addAction(cancelOption)
+        self.present(optionsMenu, animated: true)
     }
-    private func goBackToHome(){
+    
+    private func goBackToInitialPage(){
         let controller = InitialViewController.instantiate(name: .initial)
         controller.modalPresentationStyle = .fullScreen
         controller.modalTransitionStyle = .crossDissolve
-        self.present(controller, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(controller, animated: true) {
+                InitialViewController().reloadInputViews()
+            }
+        }
     }
     
     

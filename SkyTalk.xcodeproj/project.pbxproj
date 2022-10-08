@@ -63,6 +63,7 @@
 		A1ED857528EE39310088947D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857428EE39310088947D /* AudioRecorder.swift */; };
 		A1ED857828EE56510088947D /* AudioMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857728EE56510088947D /* AudioMessage.swift */; };
 		A1ED857A28EE5D320088947D /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED857928EE5D320088947D /* BasicAudioController.swift */; };
+		A1EE5B5C28F1C42400DD8694 /* VerifySignUPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EE5B5B28F1C42400DD8694 /* VerifySignUPViewController.swift */; };
 		A1FD993A28ECFEF000532736 /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD993928ECFEF000532736 /* VideoMessage.swift */; };
 		EEDE7FB226504F7F19A54657 /* Pods_SkyTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CBB20BC0CAB89088897E74E /* Pods_SkyTalk.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +129,7 @@
 		A1ED857428EE39310088947D /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		A1ED857728EE56510088947D /* AudioMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessage.swift; sourceTree = "<group>"; };
 		A1ED857928EE5D320088947D /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
+		A1EE5B5B28F1C42400DD8694 /* VerifySignUPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifySignUPViewController.swift; sourceTree = "<group>"; };
 		A1FD993928ECFEF000532736 /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		A86737213FF5A7A870410BF1 /* Pods-SkyTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkyTalk.debug.xcconfig"; path = "Target Support Files/Pods-SkyTalk/Pods-SkyTalk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				A14803C428C8CF9900FF9A76 /* SignUpViewController.swift */,
+				A1EE5B5B28F1C42400DD8694 /* VerifySignUPViewController.swift */,
 				A14803C628C8CFA400FF9A76 /* SignUp.storyboard */,
 			);
 			path = SignUp;
@@ -333,7 +336,6 @@
 				A148962328E5F05B0045A764 /* MessageManager */,
 				A1ED856C28EDA31C0088947D /* LocationManager */,
 				A1ED857628EE39DB0088947D /* AudioManager */,
-				A1ED857928EE5D320088947D /* BasicAudioController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				A1ED857428EE39310088947D /* AudioRecorder.swift */,
+				A1ED857928EE5D320088947D /* BasicAudioController.swift */,
 			);
 			path = AudioManager;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				A131164F28DFCB6F00F54BE7 /* Date+.swift in Sources */,
 				A14803B628C8BAD100FF9A76 /* InitialViewController.swift in Sources */,
 				A131164D28DF4FA000F54BE7 /* ChatManager.swift in Sources */,
+				A1EE5B5C28F1C42400DD8694 /* VerifySignUPViewController.swift in Sources */,
 				A1BE951228DA042A0036C03C /* UsersChatsTableViewController.swift in Sources */,
 				A16DF5A028E2830F00C0CFAF /* LocalMessage.swift in Sources */,
 				A14895D028E347A10045A764 /* MSGVC+MessagesLayoutDelegate.swift in Sources */,
