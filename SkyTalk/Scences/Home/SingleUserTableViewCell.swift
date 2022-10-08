@@ -19,6 +19,10 @@ class SingleUserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        unreadCounterView.isHidden = true
+        lastMassage.text = ""
+        dateOfLastMsg.text = ""
+        
         unreadCounterView.layer.cornerRadius = unreadCounterView.frame.width / 2
         userImage.layer.cornerRadius = userImage.frame.width / 2
     }

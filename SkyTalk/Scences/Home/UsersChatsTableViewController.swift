@@ -77,6 +77,7 @@ class UsersChatsTableViewController: UITableViewController{
         
         if searchController.isActive {
             let selectedUser = filteredUser[indexPath.row]
+            let currentUser = FirebaseAuthentication.shared.currentUser
             let chatId = ChatManager.shared.startChat(sender: currentUser!, receiver: selectedUser)
             print("start chat")
             goToMessagePage(user: selectedUser, chatId: chatId)

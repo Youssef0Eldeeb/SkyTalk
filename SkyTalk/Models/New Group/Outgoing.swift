@@ -24,7 +24,7 @@ class Outgoing{
         message.chatRoomId = chatId
         message.senderId = currentUser.id
         message.senderName = currentUser.name
-        message.senderInitials = String(currentUser.name.first!)
+        message.senderInitials = String(currentUser.name.first ?? ".")
         message.senderImageLink = String(currentUser.imageLink)
         message.date = Date()
         message.status = sendKey

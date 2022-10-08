@@ -29,8 +29,14 @@ class FirebaseAuthentication{
             if error == nil && authResult!.user.isEmailVerified{
                 if authResult?.user != nil {
                     let user = User(id: authResult!.user.uid, pushId: "", imageLink: "", name: userAuth.name ?? "", email: userAuth.email, status: "")
-                    FirestoreManager.shared.saveUserToFirestore(user)
-                    UserDefaultManager.shared.saveUserLocally(user)
+                    FirestoreManager.shared.FirestorReference(.User).document(user.id).getDocument { document, error in
+                        if let document = document{
+                            if !(document.exists) {
+                                FirestoreManager.shared.saveUserToFirestore(user)
+                                UserDefaultManager.shared.saveUserLocally(user)
+                            }
+                        }
+                    }
                 }
                 completion(error,true)
                 FirestoreManager.shared.downloadUserFormFirestore(userId: authResult!.user.uid)
